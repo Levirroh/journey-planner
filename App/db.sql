@@ -23,11 +23,10 @@ CREATE TABLE user(
     user_travelType ENUM('lazer', 'negocios', 'aventura', 'cultural', 'gastronomica', 'outros'),
 
     /*optional*/
-    user_wishCountryOne
-    user_wishCountryTwo
-    user_wishCountryThree
+    user_wishCountryOne VARCHAR(50),
+    user_wishCountryTwo VARCHAR(50),
+    user_wishCountryThree VARCHAR(50),
 
-    user_travelType
-
+    user_travelType int NOT NULL,
 
 )
