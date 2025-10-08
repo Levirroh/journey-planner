@@ -6,8 +6,8 @@ import './index.css'
 
 import App from './App.tsx'
 import Welcome from './Pages/Welcome.tsx'
-import Register from './Pages/Welcome.tsx'
-import Login from './Pages/Welcome.tsx'
+import Register from './Pages/Register.tsx'
+import Login from './Pages/Login.tsx'
 
 const router = createBrowserRouter([
   {
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       {index: true, element: <Welcome/>},
-      {path: "register", element: <Register/>},
-      {path: "login", element: <Login/>},
+      {path: "/register", element: <Register/>},
+      {path: "/login", element: <Login/>},
     ]
   }
 ]);
