@@ -9,10 +9,10 @@ function Welcome() {
 
       <div className="h-1/2 w-full bg-blue-400 flex justify-evenly items-center">
         <div>
-          <Button text="Entrar" />
+          <Button text="Entrar" href="/login"/>
         </div>
         <div>
-          <Button text="Cadastrar" />
+          <Button text="Cadastrar" href="/register"/>
         </div>
       </div>
     </div>
