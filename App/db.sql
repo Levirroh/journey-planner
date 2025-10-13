@@ -15,18 +15,45 @@ CREATE TABLE user(
     user_creation DATE NOT NULL,
     user_lastSeen DATETIME NOT NULL,
     user_accountStatus ENUM('active', 'inactive', 'banned') DEFAULT 'active',
-    
-    /*Foreign*/
-    user_wishCountryOne VARCHAR(50),
-    user_wishCountryTwo VARCHAR(50),
-    user_wishCountryThree VARCHAR(50),
-    user_travelType ENUM('lazer', 'negocios', 'aventura', 'cultural', 'gastronomica', 'outros'),
 
-    /*optional*/
+    /* optional / foreign */
     user_wishCountryOne VARCHAR(50),
     user_wishCountryTwo VARCHAR(50),
     user_wishCountryThree VARCHAR(50),
 
-    user_travelType int NOT NULL,
+    user_travelType ENUM('lazer', 'negocios', 'aventura', 'cultural', 'gastronomica', 'outros')
+);
 
-)
+INSERT INTO user (
+    user_name, 
+    user_nickname, 
+    user_phone, 
+    user_birth, 
+    user_country, 
+    user_state, 
+    user_city, 
+    user_password, 
+    user_creation, 
+    user_lastSeen, 
+    user_accountStatus, 
+    user_wishCountryOne, 
+    user_wishCountryTwo, 
+    user_wishCountryThree, 
+    user_travelType
+) VALUES (
+    'João Silva',                  
+    'joaos',                     
+    '47988887777',            
+    '2000-05-12',                 
+    'Brasil',                      
+    'Santa Catarina',             
+    'Joinville',                   
+    SHA2('senha123', 256),         
+    CURDATE(),                     
+    NOW(),                         
+    'active',                      
+    'Japão',                       
+    'Canadá',                      
+    'Itália',                    
+    'aventura'                     
+);
