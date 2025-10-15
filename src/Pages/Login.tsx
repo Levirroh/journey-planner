@@ -2,10 +2,14 @@ import Button from "../Components/Button"
 
 function Login() {
 
+  function Login() {
+    const response = fetch("http://");
+  }
+
   return (
     <div className="h-screen w-screen flex flex-col items-center">
       <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white text-6xl">
-        <h1>PacknGo</h1>    
+        <h1>PacknGo</h1>
       </div>
       <div className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
         <div className="flex flex-col">
@@ -17,7 +21,7 @@ function Login() {
           <input name="password" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800 "></input>
         </div>
         <div>
-          <Button text="Entrar" color="bg-slate-300" hoverColor="bg-blue-400"/>    
+          <Button text="Entrar" color="bg-slate-300" hoverColor="bg-blue-400" />
         </div>
       </div>
     </div>
