@@ -1,33 +1,4 @@
-import { useState } from "react";
-import axios from "axios";
-
-
 function Register() {
-  const [formData, setFormData] = useState({
-    user_name: "",
-    user_nickname: "",
-    user_phone: "",
-    user_birth: "",
-    user_country: "",
-    user_state: "",
-    user_city: "",
-    user_password: "",
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    try {
-      const response = await axios.post("http://localhost:8000/users/", formData)
-      console.log("Usuário criado:", response.data)
-    } catch (err) {
-      console.error("Erro ao criar usuário:", err)
-    }
-  }
-
   var page = 0;
 
   function changePage(operation: string) {
@@ -44,38 +15,38 @@ function Register() {
       <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white text-6xl">
         <h1>PacknGo</h1>
       </div>
-      <form onSubmit={handleSubmit} className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
+      <form className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
         {page == 0 && (
           <div>
             <div>
               <h2>Crie sua conta</h2>
               <label>Nome completo:</label>
-              <input name="fullName" onChange={handleChange} />
+              <input name="fullName" />
 
               <label>Como gostaria de ser chamado?</label>
-              <input name="nickname" onChange={handleChange} />
+              <input name="nickname" />
 
               <label>Email:</label>
-              <input name="email" type="email" onChange={handleChange} />
+              <input name="email" type="email" />
 
               <label>Telefone (opcional):</label>
-              <input name="phone" type="tel" onChange={handleChange} />
+              <input name="phone" type="tel" />
 
               <label>Data de nascimento:</label>
-              <input name="birthdate" type="date" onChange={handleChange} />
+              <input name="birthdate" type="date" />
             </div>
           </div>
         )}
         {page == 1 && (
           <div>
             <label>País:</label>
-            <input name="country" onChange={handleChange} />
+            <input name="country" />
 
             <label>Estado:</label>
-            <input name="state" onChange={handleChange} />
+            <input name="state" />
 
             <label>Cidade:</label>
-            <input name="city" onChange={handleChange} />
+            <input name="city" />
 
             <label>Idioma preferido:</label>
             <select name="language">
@@ -114,10 +85,10 @@ function Register() {
         {page == 3 && (
           <div>
             <label>Senha:</label>
-            <input name="password" type="password" onChange={handleChange} />
+            <input name="password" type="password" />
 
             <label>Confirmar senha:</label>
-            <input name="confirmPassword" type="password" onChange={handleChange} />
+            <input name="confirmPassword" type="password" />
           </div>
         )}
         <div>
