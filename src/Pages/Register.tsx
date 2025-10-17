@@ -1,9 +1,14 @@
+import { useState } from "react";
+
 function Register() {
-  var page = 0;
+  const [page, setPage] = useState(0);
 
   function changePage(operation: string) {
-    if (operation == "return") page--;
-    else if (operation == "next") page++
+    console.log(operation)
+    if ((page <= 0 && operation == "previous") || (page > 2 && operation == "next")) return;
+    if (operation == "previous") setPage(page - 1);
+    else setPage(page + 1)
+    console.log(page);
   }
 
   function save() {
@@ -92,12 +97,14 @@ function Register() {
           </div>
         )}
         <div>
-          <button onClick={() => changePage("previous")}>Previous</button>
+          {page > 0 && (
+            <button type="button" onClick={() => changePage("previous")}>Previous</button>
+          )}
           {page == 3 && (
             <button onClick={() => save()}>Confirm</button>
           )}
           {page != 3 && (
-            <button onClick={() => changePage("next")}>Next</button>
+            <button type="button" onClick={() => changePage("next")}>Next</button>
           )}
         </div>
       </form>
