@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../Components/Button";
 
 function Register() {
   const [page, setPage] = useState(0);
@@ -98,13 +99,13 @@ function Register() {
         )}
         <div>
           {page > 0 && (
-            <button type="button" onClick={() => changePage("previous")}>Previous</button>
+            <Button onClick={changePage("previous")} text="Previous" />
           )}
           {page == 3 && (
-            <button onClick={() => save()}>Confirm</button>
+            <Button onClick={save()} text="Confirm" />
           )}
           {page != 3 && (
-            <button type="button" onClick={() => changePage("next")}>Next</button>
+            <Button onClick={changePage("next")} text="Next" />
           )}
         </div>
       </form>
