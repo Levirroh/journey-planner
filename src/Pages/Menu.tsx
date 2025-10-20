@@ -1,10 +1,12 @@
+import Navbar from "../Components/NavBar"
 
 function Menu() {
 
   return (
     <div>
-      <h1>PacknGo</h1>    
-      <button><a href="">Entrar</a></button>    
+      <Navbar />
+      <h1>PacknGo</h1>
+      <button><a href="">Entrar</a></button>
     </div>
   )
 }
