@@ -1,4 +1,4 @@
-import Navbar from "../Components/NavBar"
+import Navbar from "../Components/Navbar"
 import CompactNavbar from "../Components/CompactNavbar"
 
 function Menu() {
