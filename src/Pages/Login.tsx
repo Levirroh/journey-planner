@@ -1,11 +1,33 @@
+import { useState } from "react";
 import Button from "../Components/Button"
 
 function Login() {
+  const [nickname, setNickname] = useState("");
+  const [password, setPassword] = useState("");
 
-  function Login() {
-    var teste = document.getElementById("teste");
-    const response = fetch(`http://127.0.0.1:8000/users/${teste}`);
-    console.log(response);
+
+  async function Login() {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nickname: nickname,
+          password: password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro no login");
+      }
+
+      const data = await response.json();
+      console.log("Login bem-sucedido:", data);
+    } catch (err) {
+      console.error("Erro:", err);
+    }
   }
 
   return (
@@ -16,11 +38,11 @@ function Login() {
       <div className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
         <div className="flex flex-col">
           <label htmlFor="username" className="pl-1 text-lg" id="teste">Email:</label>
-          <input name="username" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800"></input>
+          <input name="username" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800" value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
         </div>
         <div className="flex flex-col">
           <label htmlFor="password" className="pl-1 text-lg">Senha:</label>
-          <input name="password" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800 "></input>
+          <input name="password" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800" value={password} onChange={(e) => setPassword(e.target.value)}></input>
         </div>
         <div>
           <button onClick={() => Login()}>Teste</button>
