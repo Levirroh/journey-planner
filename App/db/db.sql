@@ -1,7 +1,8 @@
+DROP DATABASE IF EXISTS journey_planner;
 CREATE DATABASE journey_planner;
 USE journey_planner;
 
-CREATE TABLE user(
+CREATE TABLE users(
     user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_name VARCHAR(90) NOT NULL,
     user_nickname VARCHAR(45) NOT NULL,
@@ -24,7 +25,7 @@ CREATE TABLE user(
     user_travelType ENUM('lazer', 'negocios', 'aventura', 'cultural', 'gastronomica', 'outros')
 );
 
-INSERT INTO user (
+INSERT INTO users (
     user_name, 
     user_nickname, 
     user_phone, 
