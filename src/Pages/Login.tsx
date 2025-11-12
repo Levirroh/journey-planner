@@ -8,7 +8,7 @@ function Login() {
 
   async function Login() {
     try {
-      const response = await fetch("http://127.0.0.1:8000/users/login", {
+      const response = await fetch("http://localhost:8080/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,6 @@ function Login() {
           <input name="password" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800" value={password} onChange={(e) => setPassword(e.target.value)}></input>
         </div>
         <div>
-          <button onClick={() => Login()}>Teste</button>
           <Button text="Entrar" color="bg-slate-300" hoverColor="bg-blue-400" onClick={Login} />
         </div>
       </div>
