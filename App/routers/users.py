@@ -17,7 +17,7 @@ class LoginRequest(BaseModel):
 #endregion
 
 @router.post("/login")
-def login_user(request: LoginRequest):
+async def login_user(request: LoginRequest):
     conn = get_connection()
     if conn is None:
         raise HTTPException(status_code=500, detail="Erro de conexão com o banco")
