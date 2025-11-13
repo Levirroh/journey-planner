@@ -23,7 +23,7 @@ function Button({
   const button = (
     <button
       onClick={onClick}
-      className={`${color} hover:${hoverColor} ${height} ${width} text-center rounded-2xl px-4 py-2 hover:border-2 hover:h-20 hover:duration-150 hover:text-white hover:text-2xl duration-150 hover:w-40 hover:border-white hover:cursor-pointer flex justify-center items-center`}
+      className={`${color}  hover:${hoverColor}  ${height}  ${width} text-center rounded-2xl px-4 py-2 hover:border-2 hover:h-20 hover:duration-150 hover:text-white hover:text-2xl duration-150 hover:w-50 hover:border-white hover:cursor-pointer flex justify-center items-center`}
     >
       {text && <div>{text}</div>}
       {icon && <img src={icon} alt={icon} />}
