@@ -4,6 +4,9 @@ import Arrow from "../Components/Arrow"
 
 function Register() {
   const [page, setPage] = useState(0);
+  const [error, setError] = useState(false);
+
+
 
   function changePage(operation: string) {
     console.log(operation)
@@ -13,8 +16,29 @@ function Register() {
     console.log(page);
   }
 
-  function save() {
+  async function save() {
+    try {
+      const response = await fetch("http://localhost:8000/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+        }),
+      });
 
+      if (!response.ok) {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 3000);
+      }
+
+      const data = await response.json();
+      console.log("Login bem-sucedido:", data);
+    } catch (err) {
+      console.error("Erro:", err);
+    }
   }
 
   return (
