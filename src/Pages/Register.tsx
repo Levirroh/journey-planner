@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../Components/Button";
+import Arrow from "../Components/Arrow"
 
 function Register() {
   const [page, setPage] = useState(0);
@@ -18,6 +19,7 @@ function Register() {
 
   return (
     <div className="h-screen w-screen flex flex-col items-center">
+      <Arrow text="Voltar" href="/" />
       <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white text-6xl">
         <h1>PacknGo</h1>
       </div>
