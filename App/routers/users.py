@@ -23,7 +23,7 @@ async def login_user(request: LoginRequest):
         raise HTTPException(status_code=500, detail="Erro de conexão com o banco")
 
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM users WHERE user_nickname = %s", (request.nickname,))
+    cursor.execute("SELECT * FROM users WHERE user_email = %s OR user_nickname = %s", (request.nickname,))
     user = cursor.fetchone()
 
     cursor.close()
