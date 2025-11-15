@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Button from "../Components/Button";
+import Arrow from "../Components/Arrow"
 
 function Register() {
   const [page, setPage] = useState(0);
+  const [error, setError] = useState(false);
+
+
 
   // user data
   const [nickname, setNickname] = useState(0);
@@ -27,12 +31,34 @@ function Register() {
     else setPage(page + 1)
   }
 
-  function save() {
+  async function save() {
+    try {
+      const response = await fetch("http://localhost:8000/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+        }),
+      });
 
+      if (!response.ok) {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 3000);
+      }
+
+      const data = await response.json();
+      console.log("Login bem-sucedido:", data);
+    } catch (err) {
+      console.error("Erro:", err);
+    }
   }
 
   return (
     <div className="h-screen w-screen flex flex-col items-center">
+      <Arrow text="Voltar" href="/" />
       <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white text-6xl">
         <h1>PacknGo</h1>
       </div>
