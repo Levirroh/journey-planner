@@ -85,3 +85,8 @@ export default defineConfig([
   },
 ])
 ```
+
+
+API's:
+
+World cities, states and Countries: https://countrystatecity.in/
