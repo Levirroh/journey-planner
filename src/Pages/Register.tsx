@@ -7,22 +7,22 @@ function Register() {
   const [error, setError] = useState(false);
 
 
-
   // user data
-  const [nickname, setNickname] = useState(0);
-  const [email, setEmail] = useState(0);
-  const [phone, setPhone] = useState(0);
-  const [birthdate, setBirthdate] = useState(0);
-  const [country, setCountry] = useState(0);
-  const [state, setState] = useState(0);
-  const [city, setCity] = useState(0);
-  const [language, setLanguage] = useState(0);
-  const [currency, setCurrency] = useState(0);
-  const [wishCountry1, setWishCountry1] = useState(0);
-  const [wishCountry2, setWishCountry2] = useState(0);
-  const [wishCountry3, setWishCountry3] = useState(0);
-  const [travelType, setTravelType] = useState(0);
-  const [password, setPassword] = useState(0);
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [language, setLanguage] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [wishCountry1, setWishCountry1] = useState("");
+  const [wishCountry2, setWishCountry2] = useState("");
+  const [wishCountry3, setWishCountry3] = useState("");
+  const [travelType, setTravelType] = useState("");
+  const [password, setPassword] = useState("");
+
 
   function changePage(operation: string) {
     console.log(operation)
@@ -39,6 +39,13 @@ function Register() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          nickname, email,
+          phone, birthdate,
+          country, state,
+          city, language,
+          currency, wishCountry1,
+          wishCountry2, wishCountry3,
+          travelType, password
         }),
       });
 
