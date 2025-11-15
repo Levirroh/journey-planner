@@ -65,7 +65,7 @@ function Login() {
           </div>
         </div>
         <div>
-          <Button text="Entrar" width="w-45" color="bg-slate-300" hoverColor="bg-blue-400" onClick={Login} />
+          <Button text="Entrar" width="w-45" color="bg-slate-300" hoverColor="hover:bg-blue-400" onClick={Login} />
         </div>
       </div>
     </div>
