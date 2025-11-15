@@ -4,12 +4,27 @@ import Button from "../Components/Button";
 function Register() {
   const [page, setPage] = useState(0);
 
+  // user data
+  const [nickname, setNickname] = useState(0);
+  const [email, setEmail] = useState(0);
+  const [phone, setPhone] = useState(0);
+  const [birthdate, setBirthdate] = useState(0);
+  const [country, setCountry] = useState(0);
+  const [state, setState] = useState(0);
+  const [city, setCity] = useState(0);
+  const [language, setLanguage] = useState(0);
+  const [currency, setCurrency] = useState(0);
+  const [wishCountry1, setWishCountry1] = useState(0);
+  const [wishCountry2, setWishCountry2] = useState(0);
+  const [wishCountry3, setWishCountry3] = useState(0);
+  const [travelType, setTravelType] = useState(0);
+  const [password, setPassword] = useState(0);
+
   function changePage(operation: string) {
     console.log(operation)
     if ((page <= 0 && operation == "previous") || (page > 2 && operation == "next")) return;
     if (operation == "previous") setPage(page - 1);
     else setPage(page + 1)
-    console.log(page);
   }
 
   function save() {
