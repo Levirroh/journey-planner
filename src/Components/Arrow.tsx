@@ -1,3 +1,5 @@
+import arrow from "../Images/arrow-white.svg";
+
 enum EDirection {
   up = "up",
   down = "down",
@@ -16,7 +18,7 @@ enum ELocation {
 type ArrowProps = {
   direction?: EDirection
   color?: string
-  size?: number
+  size?: string
   text: string
   corner?: ELocation
   href?: string
@@ -25,19 +27,15 @@ type ArrowProps = {
 function Arrow({
   direction = EDirection.left,
   color = "bg-white",
-  size = 15,
+  size = "15",
   text = "",
-  corner = ELocation.rightTop,
+  corner = ELocation.leftTop,
   href = "",
 }: ArrowProps) {
 
   const button = (
     <button
-      style={{ height: `${size}px`, width: `${size}px` }}
-      className={`${color} text-center rounded-2xl px-4 py-2
-        hover:border-2 hover:h-20 hover:duration-150 hover:text-white hover:text-2xl
-        duration-150 hover:w-40 hover:border-white hover:cursor-pointer flex justify-center
-        items-center  
+      className={`$ p-2 items-center justify-center flex border-1 border-white rounded-2xl text-center absolute w-20 h-15 hover:h-16 hover:w-30 hover:duration-150 duration-150 cursor-pointer
 
 
       ${direction === EDirection.up ? "rotate-90" : ""}  **:${direction === EDirection.down ? "-rotate-90" : ""}
@@ -48,7 +46,7 @@ function Arrow({
       ${corner == ELocation.rightDown ? "bottom-5  right-5" : ""}  ${corner == ELocation.rightTop ? "right-5  top-5" : ""}
       `}
     >
-      {text && <div>{text}</div>}
+      <img src={arrow} alt="Return" />
     </button>
   );
 
