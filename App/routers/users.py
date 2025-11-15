@@ -15,18 +15,20 @@ class LoginRequest(BaseModel):
     password: str
 
 class RegisterRequest(BaseModel):
-    email: str
     nickname: str
+    email: str
     phone: str
     birth: str
     country: str
     state: str
     city: str
-    password: str
+    language: str
+    currency: str
     wishCountryOne: str
     wishCountryTwo: str
     wishCountryThree: str
     travelType: str
+    password:str
 
 
 #endregion
