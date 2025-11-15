@@ -9,10 +9,10 @@ function Welcome() {
 
       <div className="h-1/2 w-full bg-blue-400 flex justify-evenly items-center">
         <div>
-          <Button text="Entrar" href="/login" hoverColor="bg-blue-400" />
+          <Button text="Entrar" href="/login" hoverColor="hover:bg-blue-400" />
         </div>
         <div>
-          <Button text="Cadastrar" href="/register" hoverColor="bg-blue-400" />
+          <Button text="Cadastrar" href="/register" hoverColor="hover:bg-blue-400" />
         </div>
       </div>
     </div>
