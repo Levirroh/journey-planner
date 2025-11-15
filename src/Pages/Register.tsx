@@ -25,7 +25,6 @@ function Register() {
 
 
   function changePage(operation: string) {
-    console.log(operation)
     if ((page <= 0 && operation == "previous") || (page > 2 && operation == "next")) return;
     if (operation == "previous") setPage(page - 1);
     else setPage(page + 1)
@@ -145,15 +144,15 @@ function Register() {
             <input name="confirmPassword" type="password" />
           </div>
         )}
-        <div>
+        <div className="flex gap-5">
           {page > 0 && (
-            <Button onClick={changePage("previous")} text="Previous" />
+            <Button onClick={() => changePage("previous")} hoverColor="hover:bg-blue-400" text="Previous" />
           )}
           {page == 3 && (
-            <Button onClick={save()} text="Confirm" />
+            <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" />
           )}
           {page != 3 && (
-            <Button onClick={changePage("next")} text="Next" />
+            <Button onClick={() => changePage("next")} text="Next" hoverColor="hover:bg-blue-400" />
           )}
         </div>
       </form>
