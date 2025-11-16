@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Button from "../Components/Button";
 import Arrow from "../Components/Arrow"
+import Input, { ETypeInput } from "../Components/Input"
+
 
 function Register() {
   const [page, setPage] = useState(0);
@@ -8,6 +10,7 @@ function Register() {
 
 
   // user data
+  const [fullName, setFullName] = useState("");
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -27,7 +30,24 @@ function Register() {
   function changePage(operation: string) {
     if ((page <= 0 && operation == "previous") || (page > 2 && operation == "next")) return;
     if (operation == "previous") setPage(page - 1);
-    else setPage(page + 1)
+    else {
+      if (VerifyData()) {
+        setPage(page + 1)
+      }
+    }
+  }
+
+  function VerifyData() {
+    if (page == 0) {
+
+    } else if (page == 1) {
+
+    } else if (page == 2) {
+
+    } else if (page == 3) {
+
+    }
+    return true;
   }
 
   async function save() {
@@ -38,6 +58,7 @@ function Register() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          fullName,
           nickname, email,
           phone, birthdate,
           country, state,
@@ -65,28 +86,48 @@ function Register() {
   return (
     <div className="h-screen w-screen flex flex-col items-center">
       <Arrow text="Voltar" href="/" />
-      <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white text-6xl">
-        <h1>PacknGo</h1>
+      <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white relative">
+        <h1 className="text-6xl">PacknGo</h1>
+        <h2 className="absolute left-5 bottom-3 text-2xl">Crie sua conta</h2>
       </div>
       <form className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
         {page == 0 && (
           <div>
-            <div>
-              <h2>Crie sua conta</h2>
-              <label>Nome completo:</label>
-              <input name="fullName" />
+            <div className="flex w-screen justify-center gap-50">
+              <div>
+                <Input
+                  text="Full Name"
+                  placeholder="John Doe"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
 
-              <label>Como gostaria de ser chamado?</label>
-              <input name="nickname" />
+                <Input
+                  text="How would you like to be called"
+                  placeholder="JD"
+                  value={nickname}
+                  onChange={(e) => setNickname(e.target.value)}
+                />
 
-              <label>Email:</label>
-              <input name="email" type="email" />
-
-              <label>Telefone (opcional):</label>
-              <input name="phone" type="tel" />
-
-              <label>Data de nascimento:</label>
-              <input name="birthdate" type="date" />
+                <Input
+                  text="Email"
+                  placeholder="jhon_theCoolOne@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Input
+                  text="Birthdate"
+                  placeholder="01/01/2000"
+                  value={birthdate}
+                  onChange={(e) => setBirthdate(e.target.value)}
+                />
+                <Input
+                  text="Phone (optional)"
+                  placeholder="(99) 99999-9999"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         )}
@@ -101,19 +142,22 @@ function Register() {
             <label>Cidade:</label>
             <input name="city" />
 
-            <label>Idioma preferido:</label>
-            <select name="language">
-              <option>Português</option>
-              <option>Inglês</option>
-              <option>Espanhol</option>
-            </select>
 
-            <label>Moeda preferida:</label>
-            <select name="currency">
-              <option>BRL (R$)</option>
-              <option>USD ($)</option>
-              <option>EUR (€)</option>
-            </select>
+            <Input
+              type={ETypeInput.select}
+              text="Favorite Language"
+              options={["Portuguese", "English", "Spanish"]}
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            />
+
+            <Input
+              type={ETypeInput.select}
+              text="Favorite Currency"
+              options={["BRL (R$)", "USD ($)", "EUR (€)"]}
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            />
           </div>
         )}
         {page == 2 && (
