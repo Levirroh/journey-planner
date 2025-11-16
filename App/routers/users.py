@@ -15,6 +15,7 @@ class LoginRequest(BaseModel):
     password: str
 
 class RegisterRequest(BaseModel):
+    fullName: str
     nickname: str
     email: str
     phone: str
@@ -61,8 +62,8 @@ async def login_user(request: RegisterRequest):
         raise HTTPException(status_code=500, detail="Erro de conexão com o banco")
 
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("INSERT INTO users (user_email, user_nickname, user_phone, user_birth, user_country, user_state, user_city, user_password, wish_country_one, wish_country_two, wish_country_three, travel_type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
-                    (request.email, request.nickname, request.phone, request.birth, request.country, request.state, request.city, 
+    cursor.execute("INSERT INTO users (user_name, user_email, user_nickname, user_phone, user_birth, user_country, user_state, user_city, user_password, wish_country_one, wish_country_two, wish_country_three, travel_type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
+                    (request.fullName, request.email, request.nickname, request.phone, request.birth, request.country, request.state, request.city, 
                     bcrypt.hashpw(request.password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8"), 
                     request.wishCountryOne, request.wishCountryTwo, request.wishCountryThree, request.travelType))
     conn.commit()
