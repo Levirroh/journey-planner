@@ -33,7 +33,7 @@ function Input({
 
       {type === ETypeInput.input && (
         <input
-          className={`${color} outline-0 border-slate-400 border-2 text-slate-600 p-2 rounded-md hover:p-3 duration-150 hover:duration-150`}
+          className={`${color} outline-0 border-slate-400 border-2 text-slate-600 p-2 rounded-md hover:p-3 duration-75 hover:duration-75 focus:placeholder:opacity-0`}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
