@@ -14,7 +14,6 @@ enum ELocation {
   rightTop = "rightTop"
 }
 
-
 type ArrowProps = {
   direction?: EDirection
   color?: string
@@ -33,28 +32,28 @@ function Arrow({
   href = "",
 }: ArrowProps) {
 
-  const button = (
+  const arrowInput = (
     <button
-      className={`$ p-2 items-center justify-center flex border-1 border-white rounded-2xl text-center absolute w-20 h-15 hover:h-16 hover:w-30 hover:duration-150 duration-150 cursor-pointer
+      className={`
+        p-2 flex items-center justify-center border-1 border-white rounded-2xl 
+        absolute w-20 h-15 hover:h-16 hover:w-30 hover:duration-150 duration-150 cursor-pointer
 
+        ${direction === EDirection.up ? "rotate-90" : ""}
+        ${direction === EDirection.down ? "-rotate-90" : ""}
+        ${direction === EDirection.right ? "rotate-180" : ""}
 
-      ${direction === EDirection.up ? "rotate-90" : ""}  **:${direction === EDirection.down ? "-rotate-90" : ""}
-      ${direction === EDirection.right ? "rotate-180" : ""}
-
-      
-      ${corner == ELocation.leftDown ? "bottom-5  left-5" : ""}  ${corner == ELocation.leftTop ? "left-5  top-5" : ""} 
-      ${corner == ELocation.rightDown ? "bottom-5  right-5" : ""}  ${corner == ELocation.rightTop ? "right-5  top-5" : ""}
+        ${corner === ELocation.leftDown ? "bottom-5 left-5" : ""}
+        ${corner === ELocation.leftTop ? "left-5 top-5" : ""}
+        ${corner === ELocation.rightDown ? "bottom-5 right-5" : ""}
+        ${corner === ELocation.rightTop ? "right-5 top-5" : ""}
       `}
     >
       <img src={arrow} alt="Return" />
     </button>
   );
 
-  if (href) {
-    return <a href={href}>{button}</a>;
-  }
-
-  return button;
+  if (href) return <a href={href}>{arrowInput}</a>;
+  return arrowInput;
 }
 
-export default Arrow
+export default Arrow;
