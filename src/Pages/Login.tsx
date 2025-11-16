@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../Components/Button"
 import Arrow from "../Components/Arrow"
+import Input from "../Components/Input"
 
 function Login() {
   const [nickname, setNickname] = useState("");
@@ -54,14 +55,22 @@ function Login() {
           )}
         <div className="flex flex-col gap-5">
           <div className="flex flex-col">
-            <label htmlFor="username" className="pl-1 text-lg" id="teste">Email:</label>
-            <input name="username" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800" value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
+            <Input
+              text="Username or Email:"
+              placeholder="jhondoe"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
           </div>
 
 
           <div className="flex flex-col">
-            <label htmlFor="password" className="pl-1 text-lg">Senha:</label>
-            <input name="password" className="bg-slate-300 border-2 border-slate-400 rounded-md p-1 text-slate-800" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <Input
+              text="Password:"
+              placeholder="********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
         </div>
         <div>
