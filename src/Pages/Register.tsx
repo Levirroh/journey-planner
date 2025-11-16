@@ -86,8 +86,8 @@ function Register() {
 
   return (
     <div className="h-screen w-screen flex flex-col items-center">
-      <Arrow text="Voltar" href="/" />
       <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white relative">
+        <Arrow text="Voltar" href="/" />
         <h1 className="text-6xl">PacknGo</h1>
         <h2 className="absolute left-5 bottom-3 text-2xl">Crie sua conta</h2>
       </div>
