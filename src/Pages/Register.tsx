@@ -25,6 +25,7 @@ function Register() {
   const [wishCountry3, setWishCountry3] = useState("");
   const [travelType, setTravelType] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
 
   function changePage(operation: string) {
@@ -164,28 +165,61 @@ function Register() {
           <div>
             <h2>Preferências de viagem (opcional)</h2>
             <label>Três países que gostaria de visitar:</label>
-            <select name="wishCountry1"></select>
-            <select name="wishCountry2"></select>
-            <select name="wishCountry3"></select>
+            <Input
+              type={ETypeInput.select}
+              text="Wish Country Nº1"
+              options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+              value={wishCountry1}
+              onChange={(e) => setWishCountry1(e.target.value)}
+            />
+            <Input
+              type={ETypeInput.select}
+              text="Wish Country Nº1"
+              options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+              value={wishCountry1}
+              onChange={(e) => setWishCountry1(e.target.value)}
+            />
+            <Input
+              type={ETypeInput.select}
+              text="Wish Country Nº2"
+              options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+              value={wishCountry2}
+              onChange={(e) => setWishCountry2(e.target.value)}
+            />
+            <Input
+              type={ETypeInput.select}
+              text="Wish Country Nº3"
+              options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+              value={wishCountry3}
+              onChange={(e) => setWishCountry3(e.target.value)}
+            />
 
-            <label>Tipo de viagem preferido:</label>
-            <select name="travelType">
-              <option>Lazer</option>
-              <option>Negócios</option>
-              <option>Aventura</option>
-              <option>Cultural</option>
-              <option>Gastronômica</option>
-            </select>
+            <Input
+              type={ETypeInput.select}
+              text="Favorite Travel Objective"
+              options={["Leisure", "Business", "Adventure", "Culture", "Gastronomy"]}
+              value={travelType}
+              onChange={(e) => setTravelType(e.target.value)}
+            />
           </div>
         )}
 
         {page == 3 && (
           <div>
-            <label>Senha:</label>
-            <input name="password" type="password" />
+            <Input
+              type={ETypeInput.input}
+              text="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-            <label>Confirmar senha:</label>
-            <input name="confirmPassword" type="password" />
+            <Input
+              type={ETypeInput.input}
+              text="Confirm you password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+
           </div>
         )}
         <div className="flex gap-5">
