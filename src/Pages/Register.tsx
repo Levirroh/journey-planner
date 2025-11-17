@@ -40,14 +40,21 @@ function Register() {
 
   function VerifyData() {
     if (page == 0) {
-
+      if (fullName == "" || email == "" || nickname == "" || birthdate == "") {
+        setError(true);
+        return;
+      }
     } else if (page == 1) {
 
     } else if (page == 2) {
 
     } else if (page == 3) {
-
+      if (password == "" || confirmPassword == "") {
+        setError(true);
+        return;
+      }
     }
+    setError(false);
     return true;
   }
 
@@ -92,6 +99,16 @@ function Register() {
         <h2 className="absolute left-5 bottom-3 text-2xl">Crie sua conta</h2>
       </div>
       <form className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
+        {error &&
+          (
+            <div className="absolute self-center">
+              <div className="relative bg-red-400 text-white text-md rounded-2xl p-3" >
+                <div className="absolute top-11 left-4 w-0 h-0 border-t-[8px] border-t-red-400 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent">
+                </div>
+                <p>Dados cadastrados inválidos.</p>
+              </div>
+            </div>
+          )}
         {page == 0 && (
           <div>
             <div className="flex w-screen justify-center gap-50">
