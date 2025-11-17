@@ -89,4 +89,29 @@ export default defineConfig([
 
 API's:
 
-World cities, states and Countries: https://countrystatecity.in/
+## World cities, states and Countries: 
+Website: https://countrystatecity.in/
+Introduction: https://docs.countrystatecity.in/api/introduction
+
+### Request:
+  Base url: https://api.countrystatecity.in/v1
+  Authentication: X-CSCAPI-KEY: YOUR_API_KEY
+
+### Responses:
+
+#### Success Response
+{
+  "data": [...], // Array of results or single object
+  "total": 247,  // Total count (for list endpoints)
+  "page": 1      // Current page (for paginated endpoints)
+}
+
+
+#### Error Response (example):
+
+{
+  "error": "Unauthorized. You shouldn't be here.",
+  "code": 401,
+  "message": "Invalid or missing API key"
+}
+
