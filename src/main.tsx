@@ -8,7 +8,7 @@ import App from './App.tsx'
 import Welcome from './Pages/Welcome.tsx'
 import Register from './Pages/Register.tsx'
 import Login from './Pages/Login.tsx'
-import Menu from './Pages/Menu.tsx'
+import Home from './Pages/Home.tsx'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/welcome", element: <Welcome /> },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
-      { path: "/menu", element: <Menu /> },
+      { path: "/home", element: <Home /> },
     ]
   }
 ]);
