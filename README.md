@@ -1,3 +1,12 @@
+Anotations:
+  Feed with travels, based on account.
+  Search bar for specifics.
+  Friends tab, for simple posts (from trips from the app) & planning for trips.
+  When planning a trip can select people from friends to plan it together, including payment and seats.
+
+
+
+
 # Journey-planner
 
 Board in a app that creates your best experiences, called PacknGo.
