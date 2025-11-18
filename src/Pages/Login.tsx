@@ -30,7 +30,10 @@ function Login() {
       }
 
       const data = await response.json();
-      console.log("Login bem-sucedido:", data);
+
+      if (data.success) {
+        window.location.href = "/home";
+      }
     } catch (err) {
       console.error("Erro:", err);
     }
