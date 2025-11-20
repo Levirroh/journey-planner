@@ -1,4 +1,4 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import Relationship, SQLModel, Field
 from typing import List, Optional
 
 class State(SQLModel, table=True):
