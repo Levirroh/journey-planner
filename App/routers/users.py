@@ -1,8 +1,11 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
-from ..connection import get_connection
 import bcrypt
 
+from sqlmodel import select
+
+from App.db.database import get_session
+from App.db.models import User
 
 router = APIRouter(
     prefix="/users",
@@ -35,60 +38,54 @@ class RegisterRequest(BaseModel):
 #endregion
 
 @router.post("/login")
-async def login_user(request: LoginRequest):
-    conn = get_connection()
-    if conn is None:
-        raise HTTPException(status_code=500, detail="Erro de conexão com o banco")
+async def login_user(request: LoginRequest, session = Depends(get_session)):
 
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM users WHERE user_email = %s OR user_nickname = %s", (request.nickname,))
-    user = cursor.fetchone()
+    query = select(User).where(
+        (User.user_email == request.nickname) | 
+        (User.user_nickname == request.nickname)
+    )
 
-    cursor.close()
-    conn.close()
+    user = session.exec(query).first()
 
     if not user:
         raise HTTPException(status_code=401, detail="Usuário não encontrado")
 
-    if bcrypt.checkpw(request.password.encode("utf-8"), user["user_password"].encode("utf-8")):
-        return {"message": "Login bem-sucedido", "user_id": user["user_id"]}
+    if bcrypt.checkpw(request.password.encode("utf-8"), user.user_password.encode("utf-8")):
+        return {"message": "Login bem-sucedido", "user_id": user.user_id}
     else:
-        raise {"message": "usuário inválido"}
+        raise HTTPException(status_code=401, detail="Usuário inválido")
+
+
 
 @router.post("/register")
-async def login_user(request: RegisterRequest):
-    conn = get_connection()
-    if conn is None:
-        raise HTTPException(status_code=500, detail="Erro de conexão com o banco")
+async def register_user(request: RegisterRequest, session = Depends(get_session)):
 
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("INSERT INTO users (user_name, user_email, user_nickname, user_phone, user_birth, user_country, user_state, user_city, user_password, wish_country_one, wish_country_two, wish_country_three, travel_type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
-                    (request.fullName, request.email, request.nickname, request.phone, request.birth, request.country, request.state, request.city, 
-                    bcrypt.hashpw(request.password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8"), 
-                    request.wishCountryOne, request.wishCountryTwo, request.wishCountryThree, request.travelType))
-    conn.commit()
-    cursor.execute("SELECT * FROM users WHERE user_email = %s OR user_nickname = %s", (request.nickname, request.nickname))
-    user = cursor.fetchone()
+    hashed_password = bcrypt.hashpw(request.password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
+    new_user = User(
+        user_name=request.fullName,
+        user_email=request.email,
+        user_nickname=request.nickname,
+        user_phone=request.phone,
+        user_birth=request.birth,
+        user_country=request.country,
+        user_state=request.state,
+        user_city=request.city,
+        user_password=hashed_password,
+        wish_country_one=request.wishCountryOne,
+        wish_country_two=request.wishCountryTwo,
+        wish_country_three=request.wishCountryThree,
+        travel_type=request.travelType,
+    )
 
-    cursor.close()
-    conn.close()
+    session.add(new_user)
+    session.commit()
+    session.refresh(new_user)
 
-    if not user:
-        raise HTTPException(status_code=401, detail="Usuário não cadastrado")
-    else:
-        return {"message": "Registro bem-sucedido", "user_id": user["user_id"]}
+    return {"message": "Registro bem-sucedido", "user_id": new_user.user_id}
+
 
 @router.get("/")
-def get_users():
-    conn = get_connection()
-    if conn is None:
-        return {"error": "Não foi possível conectar ao banco de dados."}
-
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM users")
-    result = cursor.fetchall()
-
-    cursor.close()
-    conn.close()
-    return result
+def get_users(session = Depends(get_session)):
+    users = session.exec(select(User)).all()
+    return users

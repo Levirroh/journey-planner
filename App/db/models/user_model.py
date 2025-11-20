@@ -1,3 +1,4 @@
+from datetime import date
 from sqlmodel import SQLModel, Field
 from typing import Optional
 
@@ -8,7 +9,7 @@ class User(SQLModel, table=True):
     user_email: str
     user_nickname: str
     user_phone: str
-    user_birth: str
+    user_birth: date   
 
     user_country: str = Field(foreign_key="country.code")
     user_state: str = Field(foreign_key="state.code")
