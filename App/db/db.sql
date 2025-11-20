@@ -141,6 +141,3 @@ INSERT INTO users (
     'aventura'                     
 );
 
-
-
-SELECT * FROM users;
