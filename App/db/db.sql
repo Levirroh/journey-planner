@@ -77,7 +77,7 @@ CREATE TABLE seat(
 );
 
 CREATE TABLE flight(
-	light_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	flight_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     flight_title VARCHAR(45) NOT NULL,
 
     flight_destiny INT NOT NULL,
