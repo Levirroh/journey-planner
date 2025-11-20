@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import Button from "../Components/Button"
 import Arrow from "../Components/Arrow"
 import Input from "../Components/Input"
@@ -11,31 +12,16 @@ function Login() {
 
   async function Login() {
     try {
-      const response = await fetch("http://localhost:8000/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nickname: nickname,
-          password: password,
-        }),
+      const response = await axios.post("http://localhost:8000/users/login", {
+        nickname,
+        password
       });
 
-      if (!response.ok) {
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 3000);
-      }
-
-      const data = await response.json();
-
-      if (data.success) {
-        window.location.href = "/home";
-      }
-    } catch (err) {
-      console.error("Erro:", err);
+      localStorage.setItem("user", response.data.user);
+      window.location.href = "/home";
+    } catch (error) {
+      setError(true);
+      setTimeout(() => setError(false), 3000);
     }
   }
 
