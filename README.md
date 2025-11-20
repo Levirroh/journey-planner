@@ -5,6 +5,22 @@ Anotations:
   When planning a trip can select people from friends to plan it together, including payment and seats.
 
 
+Criar Migrations: 
+
+alembic revision --autogenerate -m "initial migration"
+
+Aplicar Migration:
+
+alembic upgrade head
+
+
+
+Alembic:
+
+Gerar migration automatica:
+
+alembic revision --autogenerate -m "migration_name"
+
 
 
 # Journey-planner
