@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import Button from "../Components/Button";
 import Arrow from "../Components/Arrow"
 import Input, { ETypeInput } from "../Components/Input"
@@ -26,6 +27,31 @@ function Register() {
   const [travelType, setTravelType] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  async function save() {
+    try {
+      const response = await axios.post("http://localhost:8000/users/register", {
+        fullName,
+        nickname, email,
+        phone, birthdate,
+        country, state,
+        city, language,
+        currency, wishCountry1,
+        wishCountry2, wishCountry3,
+        travelType, password
+      });
+
+      const data = await response.data;
+      if (data.success) {
+        window.location.href = "/login";
+      }
+    } catch (err) {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000)
+    }
+  }
 
 
   function changePage(operation: string) {
@@ -56,41 +82,6 @@ function Register() {
     }
     setError(false);
     return true;
-  }
-
-  async function save() {
-    try {
-      const response = await fetch("http://localhost:8000/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName,
-          nickname, email,
-          phone, birthdate,
-          country, state,
-          city, language,
-          currency, wishCountry1,
-          wishCountry2, wishCountry3,
-          travelType, password
-        }),
-      });
-
-      if (!response.ok) {
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 3000);
-      }
-      const data = await response.json();
-
-      if (data.success) {
-        window.location.href = "/home";
-      }
-    } catch (err) {
-      console.error("Erro:", err);
-    }
   }
 
   return (
