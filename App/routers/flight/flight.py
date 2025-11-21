@@ -8,8 +8,8 @@ from App.db.database import get_session
 from App.db.models import Flight
 
 router = APIRouter(
-    prefix="/plane",
-    tags=["plane"]
+    prefix="/flights",
+    tags=["flights"]
 )
 
 #region Classes
@@ -26,6 +26,11 @@ async def see_flight(request: seeFlight, session = Depends(get_session)):
     )
     return query
 
+@router.post("/getFeed")
+async def all_flights(session = Depends(get_session)):
+    #later, implement user based feed
+    query = select(Flight).all()
+    return query
 
 @router.post("/")
 async def all_flights(session = Depends(get_session)):
