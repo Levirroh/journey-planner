@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import users
+from .routers.users import users
+from .routers.geo import geo
+from .routers.plane import plane
+from .routers.flight import flight
 
 app = FastAPI()
 
@@ -24,6 +27,9 @@ app.add_middleware(
 
 # Inclui apenas os routers que têm endpoints
 app.include_router(users.router)
+app.include_router(flight.router)
+app.include_router(plane.router)
+app.include_router(geo.router)
 
 @app.get("/")
 async def root():
