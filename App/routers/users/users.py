@@ -6,6 +6,9 @@ from sqlmodel import select
 
 from App.db.database import get_session
 from App.db.models import User
+from App.db.models.flight_model import Flight
+from App.db.models.plane_model import Plane
+from App.db.models.seat_model import Seat
 
 router = APIRouter(
     prefix="/users",
@@ -13,6 +16,10 @@ router = APIRouter(
 )
 
 #region Classes
+
+class GetFromUserId(BaseModel):
+    user_id: int
+
 class LoginRequest(BaseModel):
     nickname: str
     password: str
@@ -37,6 +44,7 @@ class RegisterRequest(BaseModel):
 
 #endregion
 
+#region login register
 @router.post("/login")
 async def login_user(request: LoginRequest, session = Depends(get_session)):
 
@@ -83,6 +91,21 @@ async def register_user(request: RegisterRequest, session = Depends(get_session)
     session.refresh(new_user)
 
     return {"message": "Registro bem-sucedido", "user_id": new_user.user_id}
+
+#endregion
+
+#region Get_FromUser
+
+@router.post("/getFlightsFromUser")
+async def login_user(request: GetFromUserId, session = Depends(get_session)):
+
+    query = select(Flight).join(Plane, Plane.plane_id == Flight.plane).join(Seat, Seat.plane_id == Plane.plane_id).join(User, User.user_id == Seat.user_id).where(User.user_id == request.user_id)
+
+    response = session.exec(query)
+
+    return response
+
+#endregion
 
 
 @router.get("/")
