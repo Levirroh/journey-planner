@@ -5,10 +5,10 @@ import bcrypt
 from sqlmodel import select
 
 from App.db.database import get_session
-from App.db.models import User
-from App.db.models.flight_model import Flight
-from App.db.models.plane_model import Plane
-from App.db.models.seat_model import Seat
+from App.db.models import Users
+from App.db.models.flight_model import Flights
+from App.db.models.plane_model import Planes
+from App.db.models.seat_model import Seats
 
 router = APIRouter(
     prefix="/users",
@@ -48,9 +48,9 @@ class RegisterRequest(BaseModel):
 @router.post("/login")
 async def login_user(request: LoginRequest, session = Depends(get_session)):
 
-    query = select(User).where(
-        (User.user_email == request.nickname) | 
-        (User.user_nickname == request.nickname)
+    query = select(Users).where(
+        (Users.user_email == request.nickname) | 
+        (Users.user_nickname == request.nickname)
     )
 
     user = session.exec(query).first()
@@ -70,7 +70,7 @@ async def register_user(request: RegisterRequest, session = Depends(get_session)
 
     hashed_password = bcrypt.hashpw(request.password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
-    new_user = User(
+    new_user = Users(
         user_name=request.fullName,
         user_email=request.email,
         user_nickname=request.nickname,
@@ -99,7 +99,7 @@ async def register_user(request: RegisterRequest, session = Depends(get_session)
 @router.post("/getFlightsFromUser")
 async def login_user(request: GetFromUserId, session = Depends(get_session)):
 
-    query = select(Flight).join(Plane, Plane.plane_id == Flight.plane).join(Seat, Seat.plane_id == Plane.plane_id).join(User, User.user_id == Seat.user_id).where(User.user_id == request.user_id)
+    query = select(Flights).join(Planes, Planes.plane_id == Flights.plane).join(Seats, Seats.plane_id == Planes.plane_id).join(Users, Users.user_id == Seats.user_id).where(Users.user_id == request.user_id)
 
     response = session.exec(query)
 
@@ -110,5 +110,5 @@ async def login_user(request: GetFromUserId, session = Depends(get_session)):
 
 @router.get("/")
 def get_users(session = Depends(get_session)):
-    users = session.exec(select(User)).all()
+    users = session.exec(select(Users)).all()
     return users
