@@ -1,7 +1,7 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 
-class Aeroport(SQLModel, table=True):
+class Aeroports(SQLModel, table=True):
     aeroport_id: Optional[int] = Field(default=None, primary_key=True)
     name: str
     adress: str

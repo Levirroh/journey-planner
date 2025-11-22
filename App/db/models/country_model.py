@@ -1,7 +1,7 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import List, Optional
 
-class Country(SQLModel, table=True):
+class Countries(SQLModel, table=True):
     code: str = Field(primary_key=True)
     name: str
 

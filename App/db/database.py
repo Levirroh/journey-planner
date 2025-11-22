@@ -1,7 +1,7 @@
 # database.py
 from sqlmodel import SQLModel, create_engine, Session
 
-DATABASE_URL = "mysql+pymysql://root:1234@localhost:3306/meubanco"
+DATABASE_URL = "mysql+pymysql://root:root@localhost:3306/journey_planner"
 
 engine = create_engine(DATABASE_URL, echo=True)
 

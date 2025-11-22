@@ -15,7 +15,7 @@ class WeatherEnum(PyEnum):
     TEMPESTADE = "Storm"
 
 
-class Flight(SQLModel, table=True):
+class Flights(SQLModel, table=True):
     flight_id: Optional[int] = Field(default=None, primary_key=True)
     title: str
 

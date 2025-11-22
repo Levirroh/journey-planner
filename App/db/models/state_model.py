@@ -1,7 +1,7 @@
 from sqlmodel import Relationship, SQLModel, Field
 from typing import List, Optional
 
-class State(SQLModel, table=True):
+class States(SQLModel, table=True):
     code: str = Field(primary_key=True)
     name: str
 
