@@ -6,4 +6,4 @@ class Planes(SQLModel, table=True):
     model: str
     total_seats: int
 
-    seats: List["Seat"] = Relationship(back_populates="plane")
+    seats: List["Seats"] = Relationship(back_populates="plane")
