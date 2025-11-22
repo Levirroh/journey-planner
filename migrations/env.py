@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel
-from App.db.models import Country, State, City, User
+from App.db.models import Countries, States, Cities, Users
 
 #aplying the models' metadata for migrations
 target_metadata = SQLModel.metadata
