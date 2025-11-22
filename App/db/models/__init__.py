@@ -1,16 +1,17 @@
-from .country_model import Country
-from .state_model import State
-from .city_model import City
-from .user_model import User
-from .aeroport_model import Aeroport
-from .flight_model import Flight
-from .plane_model import Plane
-from .seat_model import Seat
+from .country_model import Countries
+from .state_model import States
+from .city_model import Cities
+from .user_model import Users
+from .aeroport_model import Aeroports
+from .flight_model import Flights
+from .plane_model import Planes
+from .seat_model import Seats
 
-User.model_rebuild()
-Country.model_rebuild()
-State.model_rebuild()
-Aeroport.model_rebuild()
-Flight.model_rebuild()
-Plane.model_rebuild()
-Seat.model_rebuild()
+Users.model_rebuild()
+Countries.model_rebuild()
+States.model_rebuild()
+Cities.model_rebuild()
+Aeroports.model_rebuild()
+Flights.model_rebuild()
+Planes.model_rebuild()
+Seats.model_rebuild()
