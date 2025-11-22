@@ -5,7 +5,7 @@ import bcrypt
 from sqlmodel import select
 
 from App.db.database import get_session
-from App.db.models import Flight
+from App.db.models import Flights
 
 router = APIRouter(
     prefix="/flights",
@@ -21,19 +21,19 @@ class seeFlight(BaseModel):
 #region Requests
 @router.post("/seeFlight")
 async def see_flight(request: seeFlight, session = Depends(get_session)):
-    query = select(Flight).where(
-        (Flight.flight_id == request.flight_id)
+    query = select(Flights).where(
+        (Flights.flight_id == request.flight_id)
     )
     return query
 
 @router.post("/getFeed")
 async def all_flights(session = Depends(get_session)):
     #later, implement user based feed
-    query = select(Flight).all()
+    query = select(Flights).all()
     return query
 
 @router.post("/")
 async def all_flights(session = Depends(get_session)):
-    query = select(Flight).all()
+    query = select(Flights).all()
     return query
 #endregion
