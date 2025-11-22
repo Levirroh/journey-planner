@@ -5,9 +5,9 @@ import bcrypt
 from sqlmodel import select
 
 from App.db.database import get_session
-from App.db.models import Country
-from App.db.models import State
-from App.db.models import City
+from App.db.models import Countries
+from App.db.models import States
+from App.db.models import Cities
 
 router = APIRouter(
     prefix="/geo",
@@ -26,8 +26,8 @@ class seeGeo(BaseModel):
 
 @router.post("/seeGeo")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(Country).join(State, State.country_code == Country.code).join(City, City.state_code == State.code).where(
-        (Country.code == request.code)
+    query = select(Countries).join(States, States.country_code == Countries.code).join(Cities, Cities.state_code == States.code).where(
+        (Countries.code == request.code)
     )
     return query
 #endregion
@@ -36,15 +36,15 @@ async def see_geo(request: seeGeo, session = Depends(get_session)):
 
 @router.post("/seeCountry")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(Country).where(
-        (Country.code == request.code)
+    query = select(Countries).where(
+        (Countries.code == request.code)
     )
     return query
 
 @router.post("/seeAllFromCountry")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(Country).join(State, State.country_code == Country.code).join(City, City.state_code == State.code).where(
-        (Country.code == request.code)
+    query = select(Countries).join(States, States.country_code == Countries.code).join(Cities, Cities.state_code == States.code).where(
+        (Countries.code == request.code)
     )
     return query
 
@@ -54,16 +54,16 @@ async def see_geo(request: seeGeo, session = Depends(get_session)):
 
 @router.post("/seeAllFromState")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(State).join(Country, State.country_code == Country.code).join(City, City.state_code == State.code).where(
-        (Country.code == request.code)
+    query = select(States).join(Countries, States.country_code == Countries.code).join(Cities, Cities.state_code == States.code).where(
+        (Countries.code == request.code)
     )
     return query
 
 
 @router.post("/seeState")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(State).where(
-        (State.code == request.code)
+    query = select(States).where(
+        (States.code == request.code)
     )
     return query
 
@@ -73,15 +73,15 @@ async def see_geo(request: seeGeo, session = Depends(get_session)):
 
 @router.post("/seeCity")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(City).where(
-        (City.code == request.code)
+    query = select(Cities).where(
+        (Cities.code == request.code)
     )
     return query
 
 @router.post("/seeAllFromCity")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(City).join(State, State.country_code == City.code).join(Country, Country.code == State.country_code).where(
-        (Country.code == request.code)
+    query = select(Cities).join(States, States.country_code == Cities.code).join(Countries, Countries.code == States.country_code).where(
+        (Countries.code == request.code)
     )
     return query
 
@@ -91,7 +91,7 @@ async def see_geo(request: seeGeo, session = Depends(get_session)):
 
 @router.post("/")
 async def all_geo(session = Depends(get_session)):
-    query = select(Country).all()
+    query = select(Countries).all()
     return query
 
 #endregion
