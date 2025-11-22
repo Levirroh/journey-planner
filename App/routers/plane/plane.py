@@ -5,7 +5,7 @@ import bcrypt
 from sqlmodel import select
 
 from App.db.database import get_session
-from App.db.models import Plane
+from App.db.models import Planes
 
 router = APIRouter(
     prefix="/plane",
@@ -21,14 +21,14 @@ class seePlane(BaseModel):
 #region Requests
 @router.post("/seePlane")
 async def see_plane(request: seePlane, session = Depends(get_session)):
-    query = select(Plane).where(
-        (Plane.plane_id == request.plane_id)
+    query = select(Planes).where(
+        (Planes.plane_id == request.plane_id)
     )
     return query
 
 
 @router.post("/")
 async def all_plane(session = Depends(get_session)):
-    query = select(Plane).all()
+    query = select(Planes).all()
     return query
 #endregion
