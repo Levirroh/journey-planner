@@ -19,8 +19,8 @@ class Flights(SQLModel, table=True):
     flight_id: Optional[int] = Field(default=None, primary_key=True)
     title: str
 
-    destiny: str = Field(foreign_key="city.code")
-    origin: str = Field(foreign_key="city.code")
+    destiny: str = Field(foreign_key="cities.code")
+    origin: str = Field(foreign_key="cities.code")
 
     departure: datetime
     arriving: datetime
@@ -30,4 +30,4 @@ class Flights(SQLModel, table=True):
         sa_column=Column(Enum(WeatherEnum))
     )
 
-    plane: Optional[int] = Field(foreign_key="plane.plane_id")
+    plane: Optional[int] = Field(foreign_key="planes.plane_id")
