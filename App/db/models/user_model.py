@@ -11,14 +11,14 @@ class Users(SQLModel, table=True):
     user_phone: str
     user_birth: date   
 
-    user_country: str = Field(foreign_key="country.code")
-    user_state: str = Field(foreign_key="state.code")
-    user_city: str = Field(foreign_key="city.code")
+    user_country: str = Field(foreign_key="countries.code")
+    user_state: str = Field(foreign_key="states.code")
+    user_city: str = Field(foreign_key="cities.code")
 
     user_password: str
 
-    wish_country_one: Optional[str] = Field(default=None, foreign_key="country.code")
-    wish_country_two: Optional[str] = Field(default=None, foreign_key="country.code")
-    wish_country_three: Optional[str] = Field(default=None, foreign_key="country.code")
+    wish_country_one: Optional[str] = Field(default=None, foreign_key="countries.code")
+    wish_country_two: Optional[str] = Field(default=None, foreign_key="countries.code")
+    wish_country_three: Optional[str] = Field(default=None, foreign_key="countries.code")
 
     travel_type: str
