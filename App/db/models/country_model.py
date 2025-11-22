@@ -5,4 +5,4 @@ class Countries(SQLModel, table=True):
     code: str = Field(primary_key=True)
     name: str
 
-    states: List["State"] = Relationship(back_populates="country")
+    states: List["States"] = Relationship(back_populates="country")
