@@ -90,7 +90,7 @@ async def register_user(request: RegisterRequest, session = Depends(get_session)
     session.commit()
     session.refresh(new_user)
 
-    return {"message": "Registro bem-sucedido", "user_id": new_user.user_id}
+    return {200}
 
 #endregion
 
