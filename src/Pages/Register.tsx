@@ -191,13 +191,6 @@ function Register() {
             />
             <Input
               type={ETypeInput.select}
-              text="Wish Country Nº1"
-              options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-              value={wishCountryOne}
-              onChange={(e) => setWishCountryOne(e.target.value)}
-            />
-            <Input
-              type={ETypeInput.select}
               text="Wish Country Nº2"
               options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
               value={wishCountryTwo}
@@ -244,7 +237,7 @@ function Register() {
             <Button onClick={() => changePage("previous")} hoverColor="hover:bg-blue-400" text="Previous" />
           )}
           {page == 3 && (
-            <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" />
+            <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" focusColor="focus:bg-green-400" />
           )}
           {page != 3 && (
             <Button onClick={() => changePage("next")} text="Next" hoverColor="hover:bg-blue-400" />
