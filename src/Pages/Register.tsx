@@ -29,30 +29,34 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   async function save() {
-    var birthdateFormatted = birth.split("/");
-    setBirthdate(birthdateFormatted[2] + "/" + birthdateFormatted[1] + "/" + birthdateFormatted[0]);
-    console.log(birth)
+    const [day, month, year] = birth.split("/");
+    const birthFormatted = `${year}-${month}-${day}`;
+
     try {
       const response = await axios.post("http://localhost:8000/users/register", {
         fullName,
-        nickname, email,
-        phone, birth,
-        country, state,
-        city, language,
-        currency, wishCountryOne,
-        wishCountryTwo, wishCountryThree,
-        travelType, password
+        nickname,
+        email,
+        phone,
+        birth: birthFormatted,   // <- agora sim!
+        country,
+        state,
+        city,
+        language,
+        currency,
+        wishCountryOne,
+        wishCountryTwo,
+        wishCountryThree,
+        travelType,
+        password
       });
 
-      const data = await response.data;
-      if (data.success) {
+      if (response) {
         window.location.href = "/login";
       }
     } catch (err) {
       setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 3000)
+      setTimeout(() => setError(false), 3000);
     }
   }
 
