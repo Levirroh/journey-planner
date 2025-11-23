@@ -33,7 +33,20 @@ function Input({
 
       {type === ETypeInput.input && (
         <input
-          className={`${color} outline-0 border-slate-400 border-2 text-slate-600 p-2 rounded-md hover:p-2.5 duration-75 hover:duration-75 focus:placeholder:opacity-0`}
+          className={`
+            w-full h-12 px-4
+            rounded-xl border-2 border-slate-300
+            text-slate-700 ${color}
+            transition-all duration-100
+            transform
+
+            hover:scale-[1.05]
+            focus:scale-[1.05]
+            hover:border-slate-400
+            focus:border-slate-400
+            focus:outline-0
+            focus:shadow-md
+          `}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -42,7 +55,19 @@ function Input({
 
       {type === ETypeInput.select && (
         <select
-          className={`${color} outline-0 border-slate-400 border-2 text-slate-600 p-2 rounded-md hover:p-3 duration-150 hover:duration-150`}
+          className={`${color} 
+            w-full h-12 px-4
+            rounded-md border-2 border-slate-300
+            text-slate-700
+            transition-all duration-100
+            transform
+
+            hover:scale-[1.05]
+            focus:scale-[1.05]
+            hover:border-slate-400
+            focus:border-slate-400
+            focus:outline-0
+            focus:shadow-md`}
           value={value}
           onChange={onChange}
         >
