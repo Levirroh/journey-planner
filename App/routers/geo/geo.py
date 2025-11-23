@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 import bcrypt
 
-from sqlmodel import select
+from sqlmodel import insert, select
 
 from App.db.database import get_session
 from App.db.models import Countries
@@ -95,5 +95,25 @@ async def all_geo(session = Depends(get_session)):
     return query
 
 #endregion
+
+@router.post("/newGeo")
+async def all_geo(session = Depends(get_session)):
+    country = Countries(code="BR", name="Brazil")
+    state = States(code="SC", name="Santa Catarina", country_code="BR")
+    city = Cities(code="Jlle", name="Joinville", state_code="SC")
+
+    session.add(country)
+    session.add(state)
+    session.add(city)
+
+    session.commit()
+    session.refresh(city)
+
+    return {
+        "country": country,
+        "state": state,
+        "city": city
+    }
+
 
 #endregion
