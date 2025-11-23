@@ -15,29 +15,32 @@ function Register() {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
+  const [birth, setBirthdate] = useState("");
+  const [country, setCountry] = useState("BR");
+  const [state, setState] = useState("SC");
+  const [city, setCity] = useState("Jlle");
   const [language, setLanguage] = useState("");
   const [currency, setCurrency] = useState("");
-  const [wishCountry1, setWishCountry1] = useState("");
-  const [wishCountry2, setWishCountry2] = useState("");
-  const [wishCountry3, setWishCountry3] = useState("");
+  const [wishCountryOne, setWishCountryOne] = useState("BR");
+  const [wishCountryTwo, setWishCountryTwo] = useState("BR");
+  const [wishCountryThree, setWishCountryThree] = useState("BR");
   const [travelType, setTravelType] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   async function save() {
+    var birthdateFormatted = birth.split("/");
+    setBirthdate(birthdateFormatted[2] + "/" + birthdateFormatted[1] + "/" + birthdateFormatted[0]);
+    console.log(birth)
     try {
       const response = await axios.post("http://localhost:8000/users/register", {
         fullName,
         nickname, email,
-        phone, birthdate,
+        phone, birth,
         country, state,
         city, language,
-        currency, wishCountry1,
-        wishCountry2, wishCountry3,
+        currency, wishCountryOne,
+        wishCountryTwo, wishCountryThree,
         travelType, password
       });
 
@@ -66,7 +69,7 @@ function Register() {
 
   function VerifyData() {
     if (page == 0) {
-      if (fullName == "" || email == "" || nickname == "" || birthdate == "") {
+      if (fullName == "" || email == "" || nickname == "" || birth == "") {
         setError(true);
         return;
       }
@@ -91,17 +94,17 @@ function Register() {
         <h1 className="text-6xl">PacknGo</h1>
         <h2 className="absolute left-5 bottom-3 text-2xl">Crie sua conta</h2>
       </div>
-      <form className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
-        {error &&
-          (
-            <div className="absolute self-center">
-              <div className="relative bg-red-400 text-white text-md rounded-2xl p-3" >
-                <div className="absolute top-11 left-4 w-0 h-0 border-t-[8px] border-t-red-400 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent">
-                </div>
-                <p>Dados cadastrados inválidos.</p>
+      {error &&
+        (
+          <div className="absolute self-center">
+            <div className="relative bg-red-400 text-white text-md top-95 left-50 rounded-2xl p-3" >
+              <div className="absolute top-11 left-4 w-0 h-0 border-t-[8px] border-t-red-400 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent">
               </div>
+              <p>Dados cadastrados inválidos.</p>
             </div>
-          )}
+          </div>
+        )}
+      <form className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
         {page == 0 && (
           <div>
             <div className="flex w-screen justify-center gap-50">
@@ -129,7 +132,7 @@ function Register() {
                 <Input
                   text="Birthdate"
                   placeholder="01/01/2000"
-                  value={birthdate}
+                  value={birth}
                   onChange={(e) => setBirthdate(e.target.value)}
                 />
                 <Input
@@ -179,29 +182,29 @@ function Register() {
               type={ETypeInput.select}
               text="Wish Country Nº1"
               options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-              value={wishCountry1}
-              onChange={(e) => setWishCountry1(e.target.value)}
+              value={wishCountryOne}
+              onChange={(e) => setWishCountryOne(e.target.value)}
             />
             <Input
               type={ETypeInput.select}
               text="Wish Country Nº1"
               options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-              value={wishCountry1}
-              onChange={(e) => setWishCountry1(e.target.value)}
+              value={wishCountryOne}
+              onChange={(e) => setWishCountryOne(e.target.value)}
             />
             <Input
               type={ETypeInput.select}
               text="Wish Country Nº2"
               options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-              value={wishCountry2}
-              onChange={(e) => setWishCountry2(e.target.value)}
+              value={wishCountryTwo}
+              onChange={(e) => setWishCountryTwo(e.target.value)}
             />
             <Input
               type={ETypeInput.select}
               text="Wish Country Nº3"
               options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-              value={wishCountry3}
-              onChange={(e) => setWishCountry3(e.target.value)}
+              value={wishCountryThree}
+              onChange={(e) => setWishCountryThree(e.target.value)}
             />
 
             <Input
