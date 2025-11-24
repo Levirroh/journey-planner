@@ -2,7 +2,7 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 
 class Cities(SQLModel, table=True):
-    code: str = Field(primary_key=True)
+    code: Optional[int] = Field(primary_key=True)
     name: str
 
     state_code: str = Field(foreign_key="states.code")
