@@ -4,6 +4,7 @@ from .routers.users import users
 from .routers.geo import geo
 from .routers.plane import plane
 from .routers.flight import flight
+from .routers.general import general
 
 app = FastAPI()
 
@@ -30,6 +31,7 @@ app.include_router(users.router)
 app.include_router(flight.router)
 app.include_router(plane.router)
 app.include_router(geo.router)
+app.include_router(general.route)
 
 @app.get("/")
 async def root():
