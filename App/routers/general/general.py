@@ -25,7 +25,7 @@ router = APIRouter(
 #endregion
 
 #region Requests
-@router.post("/insertBaseData")
+@router.get("/insertBaseData")
 async def insert_base_data(session = Depends(get_session)):
     #region inserts
     #region geo
@@ -318,6 +318,7 @@ async def insert_base_data(session = Depends(get_session)):
     )
     session.add(flights1, flights2, flights3, flights4)
     #endregion
+    return True;
     #endregion
 
     return {200}
