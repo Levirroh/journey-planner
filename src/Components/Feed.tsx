@@ -4,7 +4,6 @@ import FlightContainer from "./FlightContainer";
 function Feed() {
     const [feed, setFeed] = useState([]);
 
-
     async function GetFeed() {
         try {
             const response = await fetch("http://localhost:8000/flights/getFeed", {
@@ -23,11 +22,6 @@ function Feed() {
             console.error("Erro:", err);
         }
     }
-
-
-
-
-
     return (
         <div className="h-full w-screen bg-slate-200 flex flex-col items-center">
             {feed.map((flight: any) => (
