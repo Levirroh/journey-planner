@@ -13,7 +13,7 @@ from App.db.models.user_model import Users
 from App.db.models.aeroport_model import Aeroports
 from App.db.models.plane_model import Planes
 from App.db.models.seat_model import Seats
-from App.db.models.flight_model import Flights
+from App.db.models.flight_model import Flights, WeatherEnum
 
 router = APIRouter(
     prefix="/general",
@@ -197,10 +197,126 @@ async def insert_base_data(session = Depends(get_session)):
     session.add(aeroport1, aeroport2, aeroport3, aeroport4)
     #endregion
     #region planes
+    plane1 = Planes(
+        model = "Boeing 747",
+        total_seats = 410 
+    )
+    plane2 = Planes(
+        model = "Airbus A380",
+        total_seats = 368  
+    )
+    plane3 = Planes(
+        model = "Airbus A330-300",
+        total_seats = 305  
+    )
+    plane4 = Planes(
+        model = "Caravan da Azul",
+        total_seats = 9 
+    )
+    session.add(plane1, plane2, plane3, plane4)
     #endregion
     #region seats
+    #plane 1
+    seat1_1 = Seats(
+        code = "A1",
+        plane_id = 1,
+    )
+    seat1_2 = Seats(
+        code = "A2",
+        plane_id = 1,
+    )
+    seat1_3 = Seats(
+        code = "B1",
+        plane_id = 1,
+    )
+    seat1_4 = Seats(
+        code = "B2",
+        plane_id = 1,
+    )
+    session.add(seat1_1, seat1_2, seat1_3, seat1_4)
+    #plane 2
+    seat2_1 = Seats(
+        code = "A1",
+        plane_id = 2,
+    )
+    seat2_2 = Seats(
+        code = "A2",
+        plane_id = 2,
+    )
+    seat2_3 = Seats(
+        code = "B1",
+        plane_id = 2,
+    )
+    seat2_4 = Seats(
+        code = "B2",
+        plane_id = 2,
+    )
+    session.add(seat2_1, seat2_2, seat2_3, seat2_4)
+    
+    #plane 3
+    seat3_1 = Seats(
+        code = "A1",
+        plane_id = 3,
+    )
+    seat3_2 = Seats(
+        code = "A2",
+        plane_id = 3,
+    )
+    #plane 4
+    seat4_1 = Seats(
+        code = "B1",
+        plane_id = 4,
+    )
+    seat4_2 = Seats(
+        code = "B2",
+        plane_id = 4,
+    )
+    session.add(seat3_1, seat3_2, seat4_1, seat4_2)
+    
+    
     #endregion
     #region flights
+    flights1 = Flights(
+        title = "Voo 1",
+        destiny = 1,
+        origin = 2,
+        departure = "2025/12/12 12:12",
+        arriving = "2025/12/12 16:12",
+        duration = "04:00",
+        weather = WeatherEnum.LIMPO,
+        plane = 1,
+    )
+    flights2 = Flights(
+        title = "Voo 2",
+        destiny = 2,
+        origin = 3,
+        departure = "2025/12/12 12:12",
+        arriving = "2025/12/12 16:12",
+        duration = "04:00",
+        weather = WeatherEnum.ENSOLARADO,
+        plane = 2,
+    )
+    flights3 = Flights(
+        title = "Voo 3",
+        destiny = 3,
+        origin = 4,
+        departure = "2025/12/12 12:12",
+        arriving = "2025/12/12 16:12",
+        duration = "04:00",
+        weather = WeatherEnum.TEMPESTADE,
+        plane = 3,
+    )
+    flights4 = Flights(
+        title = "Voo 3",
+        destiny = 4,
+        origin = 1,
+        departure = "2025/12/12 12:12",
+        arriving = "2025/12/12 16:12",
+        duration = "04:00",
+        weather = WeatherEnum.CHOVENDO,
+        plane = 6,
+    )
+    session.add(flights1, flights2, flights3, flights4)
     #endregion
     #endregion
 
