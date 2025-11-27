@@ -1,16 +1,18 @@
+import Flight from "./Classes/Flight";
+
 type FlightContainerProps = {
-  flight?: []
+  flight?: Flight
   href?: string
 }
 
 function FlightContainer({
-  flight = null,
+  flight,
   href = "",
 }: FlightContainerProps) {
 
   const flightContainer = (
     <div>
-      <p></p>
+      <p>{flight?.title}</p>
     </div>
   );
 
