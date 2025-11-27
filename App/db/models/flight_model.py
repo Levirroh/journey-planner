@@ -4,9 +4,6 @@ from sqlalchemy import Column, Enum
 from enum import Enum as PyEnum
 from typing import Optional
 
-
-
-
 class WeatherEnum(PyEnum):
     CHOVENDO = "Raining"
     ENSOLARADO = "Sunny"
