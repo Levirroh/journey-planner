@@ -11,8 +11,12 @@ function FlightContainer({
 }: FlightContainerProps) {
 
   const flightContainer = (
-    <div>
-      <p>{flight?.title}</p>
+    <div className="w-full h-15">
+      <div className="w-[90%] h-7">
+        <p>{flight?.title}</p>
+        <p>{flight?.departure}</p>
+        <p>{flight?.arriving}</p>
+      </div>
     </div>
   );
 
