@@ -7,4 +7,4 @@ class Aeroports(SQLModel, table=True):
     adress: str
 
     state: str = Field(foreign_key="states.code")
-    city: str = Field(foreign_key="cities.code")
+    city: int = Field(foreign_key="cities.code")
