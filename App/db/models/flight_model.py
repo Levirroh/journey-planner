@@ -16,8 +16,8 @@ class Flights(SQLModel, table=True):
     flight_id: Optional[int] = Field(default=None, primary_key=True)
     title: str
 
-    destiny: str = Field(foreign_key="cities.code")
-    origin: str = Field(foreign_key="cities.code")
+    destiny: int = Field(foreign_key="cities.code")
+    origin: int = Field(foreign_key="cities.code")
 
     departure: datetime
     arriving: datetime
