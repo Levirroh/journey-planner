@@ -25,7 +25,9 @@ function Feed() {
     return (
         <div className="h-full w-screen bg-slate-200 flex flex-col items-center">
             {feed.map((flight: any) => (
-                <FlightContainer flight={flight} />
+                <div className="p-3">
+                    <FlightContainer flight={flight} />
+                </div>
             ))}
         </div>
     )
