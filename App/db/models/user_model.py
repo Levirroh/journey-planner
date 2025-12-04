@@ -13,7 +13,7 @@ class Users(SQLModel, table=True):
 
     user_country: str = Field(foreign_key="countries.code")
     user_state: str = Field(foreign_key="states.code")
-    user_city: str = Field(foreign_key="cities.code")
+    user_city: int = Field(foreign_key="cities.code")
 
     user_password: str
 
