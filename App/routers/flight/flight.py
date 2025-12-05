@@ -16,6 +16,10 @@ router = APIRouter(
 class seeFlight(BaseModel):
     flight_id: int
 
+
+class newFlight(BaseModel):
+    flight_id: int
+
 #endregion
 
 #region Requests
@@ -31,6 +35,17 @@ async def all_flights(session = Depends(get_session)):
     #later, implement user based feed
     query = select(Flights).all()
     return query
+
+@router.post("/newFlight")
+async def new_flight(request: newFlight , session = Depends(get_session)):
+    #later, implement user based feed
+    session.add(newFlight);
+    query = select(Flights).where(
+        (Flights.flight_id == request.flight_id)
+    )
+    return query
+
+
 
 @router.post("/")
 async def all_flights(session = Depends(get_session)):
