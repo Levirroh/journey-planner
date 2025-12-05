@@ -39,7 +39,7 @@ async def all_flights(session = Depends(get_session)):
 @router.post("/newFlight")
 async def new_flight(request: newFlight , session = Depends(get_session)):
     #later, implement user based feed
-    session.add(newFlight);
+    session.add(newFlight)
     query = select(Flights).where(
         (Flights.flight_id == request.flight_id)
     )
