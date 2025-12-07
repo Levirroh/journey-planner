@@ -32,9 +32,10 @@ async def see_flight(request: seeFlight, session = Depends(get_session)):
 
 @router.post("/getFeed")
 async def all_flights(session = Depends(get_session)):
-    #later, implement user based feed
-    query = select(Flights).all()
-    return query
+    result = session.exec(select(Flights))
+    flights = result.all()
+    return flights
+
 
 @router.post("/newFlight")
 async def new_flight(request: newFlight , session = Depends(get_session)):
