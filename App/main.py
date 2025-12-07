@@ -31,7 +31,7 @@ app.include_router(users.router)
 app.include_router(flight.router)
 app.include_router(plane.router)
 app.include_router(geo.router)
-app.include_router(general.route)
+app.include_router(general.router)
 
 @app.get("/")
 async def root():
