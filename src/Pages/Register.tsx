@@ -18,7 +18,7 @@ function Register() {
   const [birth, setBirthdate] = useState("");
   const [country, setCountry] = useState("BR");
   const [state, setState] = useState("SC");
-  const [city, setCity] = useState("Jlle");
+  const [city, setCity] = useState("1");
   const [language, setLanguage] = useState("");
   const [currency, setCurrency] = useState("");
   const [wishCountryOne, setWishCountryOne] = useState("BR");
