@@ -27,301 +27,260 @@ router = APIRouter(
 #region Requests
 @router.get("/insertBaseData")
 async def insert_base_data(session = Depends(get_session)):
-    #region inserts
-    #region geo
-    #region countries
-    country1 = Countries(
-        name="Brazil",
-        code="BR",
-    )
-    country2 = Countries(
-        name="United States of America",
-        code="US",
-    )
-    country3 = Countries(
-        name="Japan",
-        code="JP",
-    )
-    country4 = Countries(
-        name="Portugal",
-        code="PT",
-    )
-    
-    session.add(country1, country2, country3, country4)
-    #endregion
-    #region states
-    state1 = States(
-        name="Santa Catarina",
-        code="BR-SC",
-        country_code="BR",
-        country="BR"
-    )
-    state2 = States(
-        name="California",
-        code="US-CA",
-        country_code="US",
-        country="US"
-    )
-    state3 = States(
-        name="Hokkaidô",
-        code="JP-01",
-        country_code="JP",
-        country="JP"
-    )
-    state4 = States(
-        name="Lisboa",
-        code="PT-11",
-        country_code="PT",
-        country="PT"
-    )
-    
-    session.add(state1, state2, state3, state4)
-    #endregion
-    #region cities
-    city1 = Cities(
-        name="Joinville",
-        code=1,
-        state="BR-SC",
-        state_code="BR-SC"
-    )
-    city2 = Cities(
-        name="San Diego",
-        code=2,
-        state="US-CA",
-        state_code="US-CA",
-    )
-    city3 = Cities(
-        name="Sapporo",
-        code=3,
-        state="JP-01",
-        state_code="JP-01",
-    )
-    city4 = Cities(
-        name="Montijo",
-        code=4,
-        state="PT-11",
-        state_code="PT-11",
-    )
-    
-    session.add(city1, city2, city3, city4)
-    #endregion
-    #endregion
-    #region users
-    user1 = Users(
-        user_name="Johann Gossen Ruth",
-        user_email="johann@gmail.com",
-        user_nickname="Levirroh",
-        user_phone="47 99999-9999",
-        user_birth="2006/14/10",
-        user_country="BR",
-        user_state="BR-SC",
-        user_city=1,
-        user_password=bcrypt.hashpw("senha".encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
-        wish_country_one="US",
-        wish_country_two="PT",
-        wish_country_three="JP",
-        travel_type="Business",
-    )
-    user2 = Users(
-        user_name="Gustavo Floriano",
-        user_email="gustavo@gmail.com",
-        user_nickname="Peba",
-        user_phone="47 99999-9999",
-        user_birth="2006/07/09",
-        user_country="US",
-        user_state="US-CA",
-        user_city=2,
-        user_password=bcrypt.hashpw("senha".encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
-        wish_country_one="BR",
-        wish_country_two="PT",
-        wish_country_three="JP",
-        travel_type="Business",
-    )
-    user3 = Users(
-        user_name="Vitor Hugo da Cunha",
-        user_email="vh@gmail.com",
-        user_nickname="Mini Veiga",
-        user_phone="47 99999-9999",
-        user_birth="2006/01/01",
-        user_country="JP",
-        user_state="JP-01",
-        user_city=3,
-        user_password=bcrypt.hashpw("senha".encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
-        wish_country_one="BR",
-        wish_country_two="PT",
-        wish_country_three="US",
-        travel_type="Business",
-    )
-    user4 = Users(
-        user_name="João Caetano Constantino",
-        user_email="jcc@gmail.com",
-        user_nickname="Python constantino",
-        user_phone="47 99999-9999",
-        user_birth="2006/02/02",
-        user_country="PT",
-        user_state="PT-11",
-        user_city=4,
-        user_password=bcrypt.hashpw("senha".encode("utf-8"), bcrypt.gensalt()).decode("utf-8"),
-        wish_country_one="BR",
-        wish_country_two="JP",
-        wish_country_three="US",
-        travel_type="Business",
-    )
-    session.add(user1, user2, user3, user4)
-    #endregion
-    #region aeroports
-    aeroport1 = Aeroports(
-        name="Aeroporto de Joinville",
-        adress= "Rua: Rua do Aeroporto de Joinville, Bairro: Bairro do Aeroporto de Joinville",
-        state="BR-SC",
-        city=1
-    )
-    aeroport2 = Aeroports(
-        name="San Diego Airport",
-        adress= "Yes",
-        state="US-CA",
-        city=2
-    )
-    aeroport3 = Aeroports(
-        name="Aeroporto do Japão",
-        adress= "No",
-        state="JP-01",
-        city=3
-    )
-    aeroport4 = Aeroports(
-        name="Aeroporoto das",
-        adress= "Maybe",
-        state="PT-11",
-        city=4
-    )
-    session.add(aeroport1, aeroport2, aeroport3, aeroport4)
-    #endregion
-    #region planes
-    plane1 = Planes(
-        model = "Boeing 747",
-        total_seats = 410 
-    )
-    plane2 = Planes(
-        model = "Airbus A380",
-        total_seats = 368  
-    )
-    plane3 = Planes(
-        model = "Airbus A330-300",
-        total_seats = 305  
-    )
-    plane4 = Planes(
-        model = "Caravan da Azul",
-        total_seats = 9 
-    )
-    session.add(plane1, plane2, plane3, plane4)
-    #endregion
-    #region seats
-    #plane 1
-    seat1_1 = Seats(
-        code = "A1",
-        plane_id = 1,
-    )
-    seat1_2 = Seats(
-        code = "A2",
-        plane_id = 1,
-    )
-    seat1_3 = Seats(
-        code = "B1",
-        plane_id = 1,
-    )
-    seat1_4 = Seats(
-        code = "B2",
-        plane_id = 1,
-    )
-    session.add(seat1_1, seat1_2, seat1_3, seat1_4)
-    #plane 2
-    seat2_1 = Seats(
-        code = "A1",
-        plane_id = 2,
-    )
-    seat2_2 = Seats(
-        code = "A2",
-        plane_id = 2,
-    )
-    seat2_3 = Seats(
-        code = "B1",
-        plane_id = 2,
-    )
-    seat2_4 = Seats(
-        code = "B2",
-        plane_id = 2,
-    )
-    session.add(seat2_1, seat2_2, seat2_3, seat2_4)
-    
-    #plane 3
-    seat3_1 = Seats(
-        code = "A1",
-        plane_id = 3,
-    )
-    seat3_2 = Seats(
-        code = "A2",
-        plane_id = 3,
-    )
-    #plane 4
-    seat4_1 = Seats(
-        code = "B1",
-        plane_id = 4,
-    )
-    seat4_2 = Seats(
-        code = "B2",
-        plane_id = 4,
-    )
-    session.add(seat3_1, seat3_2, seat4_1, seat4_2)
-    
-    
-    #endregion
-    #region flights
-    flights1 = Flights(
-        title = "Voo 1",
-        destiny = 1,
-        origin = 2,
-        departure = "2025/12/12 12:12",
-        arriving = "2025/12/12 16:12",
-        duration = "04:00",
-        weather = WeatherEnum.LIMPO,
-        plane = 1,
-    )
-    flights2 = Flights(
-        title = "Voo 2",
-        destiny = 2,
-        origin = 3,
-        departure = "2025/12/12 12:12",
-        arriving = "2025/12/12 16:12",
-        duration = "04:00",
-        weather = WeatherEnum.ENSOLARADO,
-        plane = 2,
-    )
-    flights3 = Flights(
-        title = "Voo 3",
-        destiny = 3,
-        origin = 4,
-        departure = "2025/12/12 12:12",
-        arriving = "2025/12/12 16:12",
-        duration = "04:00",
-        weather = WeatherEnum.TEMPESTADE,
-        plane = 3,
-    )
-    flights4 = Flights(
-        title = "Voo 3",
-        destiny = 4,
-        origin = 1,
-        departure = "2025/12/12 12:12",
-        arriving = "2025/12/12 16:12",
-        duration = "04:00",
-        weather = WeatherEnum.CHOVENDO,
-        plane = 6,
-    )
-    session.add(flights1, flights2, flights3, flights4)
-    #endregion
-    return True;
-    #endregion
+    # -------------------------------
+    # COUNTRIES
+    # -------------------------------
+    countries = [
+        Countries(name="Brazil", code="BR"),
+        Countries(name="United States of America", code="US"),
+        Countries(name="Japan", code="JP"),
+        Countries(name="Portugal", code="PT"),
+    ]
+    session.add_all(countries)
+    session.commit()  # garante IDs para FK posteriores
 
-    return {200}
+    # -------------------------------
+    # STATES
+    # -------------------------------
+    states = [
+        States(name="Santa Catarina", code="BR-SC", country_code="BR", country=countries[0]),
+        States(name="California", code="US-CA", country_code="US", country=countries[1]),
+        States(name="Hokkaidô", code="JP-01", country_code="JP", country=countries[2]),
+        States(name="Lisboa", code="PT-11", country_code="PT", country=countries[3]),
+    ]
+    session.add_all(states)
+    session.commit()
+
+    # -------------------------------
+    # CITIES
+    # -------------------------------
+    cities = [
+        Cities(name="Joinville", code=1, state=states[0], state_code="BR-SC"),
+        Cities(name="San Diego", code=2, state=states[1], state_code="US-CA"),
+        Cities(name="Sapporo", code=3, state=states[2], state_code="JP-01"),
+        Cities(name="Montijo", code=4, state=states[3], state_code="PT-11"),
+    ]
+    session.add_all(cities)
+    session.commit()
+
+    # -------------------------------
+    # USERS
+    # -------------------------------
+    users = [
+        Users(
+            user_name="Johann Gossen Ruth",
+            user_email="johann@gmail.com",
+            user_nickname="Levirroh",
+            user_phone="47 99999-9999",
+            user_birth="2006-10-14",
+            user_country="BR",
+            user_state="BR-SC",
+            user_city=1,
+            user_password=bcrypt.hashpw("senha".encode(), bcrypt.gensalt()).decode(),
+            wish_country_one="US",
+            wish_country_two="PT",
+            wish_country_three="JP",
+            travel_type="Business",
+        ),
+        Users(
+            user_name="Gustavo Floriano",
+            user_email="gustavo@gmail.com",
+            user_nickname="Peba",
+            user_phone="47 99999-9999",
+            user_birth="2006-09-07",
+            user_country="US",
+            user_state="US-CA",
+            user_city=2,
+            user_password=bcrypt.hashpw("senha".encode(), bcrypt.gensalt()).decode(),
+            wish_country_one="BR",
+            wish_country_two="PT",
+            wish_country_three="JP",
+            travel_type="Business",
+        ),
+        Users(
+            user_name="Vitor Hugo da Cunha",
+            user_email="vh@gmail.com",
+            user_nickname="Mini Veiga",
+            user_phone="47 99999-9999",
+            user_birth="2006-01-01",
+            user_country="JP",
+            user_state="JP-01",
+            user_city=3,
+            user_password=bcrypt.hashpw("senha".encode(), bcrypt.gensalt()).decode(),
+            wish_country_one="BR",
+            wish_country_two="PT",
+            wish_country_three="US",
+            travel_type="Business",
+        ),
+        Users(
+            user_name="João Caetano Constantino",
+            user_email="jcc@gmail.com",
+            user_nickname="Python constantino",
+            user_phone="47 99999-9999",
+            user_birth="2006-02-02",
+            user_country="PT",
+            user_state="PT-11",
+            user_city=4,
+            user_password=bcrypt.hashpw("senha".encode(), bcrypt.gensalt()).decode(),
+            wish_country_one="BR",
+            wish_country_two="JP",
+            wish_country_three="US",
+            travel_type="Business",
+        ),
+    ]
+
+    session.add_all(users)
+    session.commit()
+
+    # -------------------------------
+    # AEROPORTS
+    # -------------------------------
+    aeroports = [
+        Aeroports(name="Aeroporto de Joinville",
+                  adress="Rua do Aeroporto de Joinville",
+                  state="BR-SC",
+                  city=1),
+        Aeroports(name="San Diego Airport",
+                  adress="Yes",
+                  state="US-CA",
+                  city=2),
+        Aeroports(name="Aeroporto do Japão",
+                  adress="No",
+                  state="JP-01",
+                  city=3),
+        Aeroports(name="Aeroporto das",
+                  adress="Maybe",
+                  state="PT-11",
+                  city=4),
+    ]
+
+    session.add_all(aeroports)
+    session.commit()
+
+    # -------------------------------
+    # PLANES
+    # -------------------------------
+    planes = [
+        Planes(model="Boeing 747", total_seats=410),
+        Planes(model="Airbus A380", total_seats=368),
+        Planes(model="Airbus A330-300", total_seats=305),
+        Planes(model="Caravan da Azul", total_seats=9),
+    ]
+
+    session.add_all(planes)
+    session.commit()
+
+    # -------------------------------
+    # SEATS
+    # -------------------------------
+    seats = [
+        # Plane 1
+        Seats(code="A1", plane_id=1),
+        Seats(code="A2", plane_id=1),
+        Seats(code="B1", plane_id=1),
+        Seats(code="B2", plane_id=1),
+
+        # Plane 2
+        Seats(code="A1", plane_id=2),
+        Seats(code="A2", plane_id=2),
+        Seats(code="B1", plane_id=2),
+        Seats(code="B2", plane_id=2),
+
+        # Plane 3
+        Seats(code="A1", plane_id=3),
+        Seats(code="A2", plane_id=3),
+
+        # Plane 4
+        Seats(code="B1", plane_id=4),
+        Seats(code="B2", plane_id=4),
+    ]
+
+    session.add_all(seats)
+    session.commit()
+
+    # -------------------------------
+    # FLIGHTS
+    # -------------------------------
+    flights = [
+        Flights(
+            title="Voo 1",
+            destiny=1,
+            origin=2,
+            departure="2025-12-12 12:12",
+            arriving="2025-12-12 16:12",
+            duration="04:00",
+            weather=WeatherEnum.LIMPO,
+            plane=1,
+        ),
+        Flights(
+            title="Voo 2",
+            destiny=2,
+            origin=3,
+            departure="2025-12-12 12:12",
+            arriving="2025-12-12 16:12",
+            duration="04:00",
+            weather=WeatherEnum.ENSOLARADO,
+            plane=2,
+        ),
+        Flights(
+            title="Voo 3",
+            destiny=3,
+            origin=4,
+            departure="2025-12-12 12:12",
+            arriving="2025-12-12 16:12",
+            duration="04:00",
+            weather=WeatherEnum.TEMPESTADE,
+            plane=3,
+        ),
+        Flights(
+            title="Voo 4",
+            destiny=4,
+            origin=1,
+            departure="2025-12-12 12:12",
+            arriving="2025-12-12 16:12",
+            duration="04:00",
+            weather=WeatherEnum.CHOVENDO,
+            plane=4,   # corrigido! antes era 6
+        ),
+    ]
+
+    session.add_all(flights)
+    session.commit()
+
+    return {"success": True}
+
+
+@router.delete("/dropBaseData")
+async def drop_base_data(session = Depends(get_session)):
+    # Ordem correta: remover entidades filhas → pais
+
+    # Flights depende de seats, planes, aeroportos...
+    session.query(Flights).delete()
+    session.commit()
+
+    session.query(Seats).delete()
+    session.commit()
+
+    session.query(Planes).delete()
+    session.commit()
+
+    session.query(Aeroports).delete()
+    session.commit()
+
+    session.query(Users).delete()
+    session.commit()
+
+    session.query(Cities).delete()
+    session.commit()
+
+    session.query(States).delete()
+    session.commit()
+
+    session.query(Countries).delete()
+    session.commit()
+
+    return {"success": True, "message": "Base data removida com sucesso."}
+
 
 
 #endregion
