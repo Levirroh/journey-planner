@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FlightContainer from "./FlightContainer";
 
 function Feed() {
     const [feed, setFeed] = useState([]);
+    useEffect(() => {
+        GetFeed();
+    }, []);
 
     async function GetFeed() {
         try {
