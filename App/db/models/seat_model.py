@@ -21,6 +21,7 @@ class Seats(SQLModel, table=True):
     code: str
     classname: ClassTypes
     location: SeatPlace
+    location_especify: Optional[SeatPlace]
 
     plane_id: Optional[int] = Field(foreign_key="planes.plane_id")
     plane: Optional["Planes"] = Relationship(back_populates="seats")
