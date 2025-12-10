@@ -10,6 +10,8 @@ function FlightContainer({
   href = "",
 }: FlightContainerProps) {
 
+  flight!.remainingSeats = flight?.seats?.filter(seat => seat.user?.user_name !== undefined) || [];
+
   const flightContainer = (
     <div className="text-black w-90 h-35 p-4 rounded-lg flex flex-col justify-center items-center bg-gradient-to-br from-gray-300 to-gray-400 shadow-lg">
       <div className="text-center w-[90%] pb-2">
@@ -20,6 +22,7 @@ function FlightContainer({
       <div className="text-center w-full h-full">
         <div className="flex">
           <p>{flight?.departure} | {flight?.arriving}</p>
+          <p>Remaining seats: {flight!.remainingSeats.length}</p>
         </div>
       </div>
     </div>
