@@ -32,7 +32,7 @@ async def see_flight(request: seeFlight, session = Depends(get_session)):
 
 @router.post("/getFeed")
 async def all_flights(session = Depends(get_session)):
-    result = session.exec(select(Flights))
+    result = session.exec(select(Flights).joinedload(Flights.plane).joinedload(Flights.seats))
     flights = result.all()
     return flights
 
