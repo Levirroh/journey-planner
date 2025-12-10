@@ -1,5 +1,6 @@
 import type City from "./City"
 import type Plane from "./Plane"
+import type Seats from "./Seats"
 import WeatherEnum from "./Wheater"
 
 export default class Flight {
@@ -11,4 +12,6 @@ export default class Flight {
   duration?: string
   weather?: WeatherEnum
   plane?: Plane
+  seats?: Seats[]
+  remainingSeats?: Seats[]
 }
