@@ -18,6 +18,7 @@ function FlightContainer({
         <h1 className="text-xl text-left">{flight?.title}</h1>
       </div>
       <div className="bg-slate-200 w-[90%] h-[30%] rounded-lg flex justify-center items-center mb-2">
+        <p>{flight!.image}</p>
       </div>
       <div className="text-center w-full h-full">
         <div className="flex">
