@@ -13,5 +13,6 @@ export default class Flight {
   weather?: WeatherEnum
   plane?: Plane
   seats?: Seats[]
+  image?: string
   remainingSeats?: Seats[]
 }
