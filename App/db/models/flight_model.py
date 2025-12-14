@@ -4,7 +4,7 @@ from sqlalchemy import Column, Enum
 from enum import Enum as PyEnum
 from typing import Optional
 
-class WeatherEnum(PyEnum):
+class WeatherEnum(str, PyEnum):
     CHOVENDO = "Raining"
     ENSOLARADO = "Sunny"
     NUBLADO = "Cloudy"
@@ -25,7 +25,7 @@ class Flights(SQLModel, table=True):
     duration: time
 
     weather: WeatherEnum = Field(
-        sa_column=Column(Enum(WeatherEnum))
+        sa_column=Column(Enum(WeatherEnum, name="weather_enum"))
     )
 
     plane: Optional[int] = Field(foreign_key="planes.plane_id")
