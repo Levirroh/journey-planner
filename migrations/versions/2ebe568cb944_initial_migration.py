@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 60e5d3eb4eaa
+Revision ID: 2ebe568cb944
 Revises: 
-Create Date: 2025-12-04 20:02:01.192958
+Create Date: 2025-12-14 11:16:35.292567
 
 """
 from typing import Sequence, Union
@@ -13,7 +13,7 @@ import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision: str = '60e5d3eb4eaa'
+revision: str = '2ebe568cb944'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -60,12 +60,13 @@ def upgrade() -> None:
     op.create_table('flights',
     sa.Column('flight_id', sa.Integer(), nullable=False),
     sa.Column('title', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('image', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('destiny', sa.Integer(), nullable=False),
     sa.Column('origin', sa.Integer(), nullable=False),
     sa.Column('departure', sa.DateTime(), nullable=False),
     sa.Column('arriving', sa.DateTime(), nullable=False),
     sa.Column('duration', sa.Time(), nullable=False),
-    sa.Column('weather', sa.Enum('CHOVENDO', 'ENSOLARADO', 'NUBLADO', 'LIMPO', 'TEMPESTADE', name='weatherenum'), nullable=True),
+    sa.Column('weather', sa.Enum('CHOVENDO', 'ENSOLARADO', 'NUBLADO', 'LIMPO', 'TEMPESTADE', name='weather_enum'), nullable=True),
     sa.Column('plane', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['destiny'], ['cities.code'], ),
     sa.ForeignKeyConstraint(['origin'], ['cities.code'], ),
@@ -98,6 +99,9 @@ def upgrade() -> None:
     op.create_table('seats',
     sa.Column('seat_id', sa.Integer(), nullable=False),
     sa.Column('code', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('weather', sa.Enum('ECONOMY', 'P_ECONOMY', 'BUSINESS', 'FIRST_CLASS', name='class_types_enum'), nullable=True),
+    sa.Column('location', sa.Enum('WINDOWS', 'CORRIDOR', 'MIDDLE', 'EMERGENCY', 'WING', 'FRONT', name='seat_place_enum'), nullable=True),
+    sa.Column('location_especify', sa.Enum('WINDOWS', 'CORRIDOR', 'MIDDLE', 'EMERGENCY', 'WING', 'FRONT', name='seat_place_especify_enum'), nullable=True),
     sa.Column('plane_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['plane_id'], ['planes.plane_id'], ),
