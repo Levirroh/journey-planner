@@ -16,8 +16,8 @@ function Button({
   height = "h-15",
   width = "w-25",
   href = "",
-  hoverColor = "hover:bg-blue-500",
-  focusColor = "focus:bg-blue-500",
+  hoverColor = "hover:bg-blue-400",
+  focusColor = "focus:bg-blue-400",
   onClick = null,
   icon = ""
 }: ButtonProps) {
@@ -40,6 +40,7 @@ function Button({
         hover:shadow-lg
         focus:shadow-lg
         shadow-md
+        hover:cursor-pointer
 
         border border-transparent hover:border-white focus:border-white 
       `}
