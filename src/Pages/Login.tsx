@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Button from "../Components/Button"
 import Arrow from "../Components/Arrow"
-import Input from "../Components/Input"
+import Input, { ETypeInput } from "../Components/Input"
 
 function Login() {
   const [nickname, setNickname] = useState("");
@@ -58,6 +58,7 @@ function Login() {
               text="Password:"
               placeholder="********"
               value={password}
+              type={ETypeInput.password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
