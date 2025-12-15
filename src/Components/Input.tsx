@@ -1,5 +1,8 @@
+import { Eye } from "lucide-react"
+
 export enum ETypeInput {
   input = "input",
+  password = "password",
   select = "select",
   submit = "submit",
   button = "button"
@@ -16,6 +19,18 @@ type InputProps = {
   onChange?: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void
 }
 
+function showPassword() {
+  const passwordInput = document.querySelector('input[type="password"]') as HTMLInputElement;
+  if (passwordInput) {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+    }
+  }
+}
+
+
 function Input({
   href = "",
   type = ETypeInput.input,
@@ -28,10 +43,10 @@ function Input({
 }: InputProps) {
 
   const input = (
-    <div className="flex flex-col">
+    <div className="flex flex-col relative">
       <label className="pl-2">{text}</label>
 
-      {type === ETypeInput.input && (
+      {(type === ETypeInput.input || type === ETypeInput.password) && (
         <input
           className={`
             w-full h-12 px-4
@@ -52,11 +67,14 @@ function Input({
             hover:shadow-md
           `}
           placeholder={placeholder}
+          type={type == ETypeInput.password ? "password" : "text"}
           value={value}
           onChange={onChange}
         />
       )}
-
+      {type === ETypeInput.password && (
+        <Eye className="self-end absolute right-2 top-1/2 hover:cursor-pointer" color="#64748B" onClick={() => showPassword()} />
+      )}
       {type === ETypeInput.select && (
         <select
           className={`${color} 
