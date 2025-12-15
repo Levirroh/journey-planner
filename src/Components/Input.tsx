@@ -1,4 +1,5 @@
-import { Eye } from "lucide-react"
+import { Eye, EyeOff } from "lucide-react"
+import { useState } from "react"
 
 export enum ETypeInput {
   input = "input",
@@ -19,18 +20,6 @@ type InputProps = {
   onChange?: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void
 }
 
-function showPassword() {
-  const passwordInput = document.querySelector('input[type="password"]') as HTMLInputElement;
-  if (passwordInput) {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-    } else {
-      passwordInput.type = "password";
-    }
-  }
-}
-
-
 function Input({
   href = "",
   type = ETypeInput.input,
@@ -41,6 +30,11 @@ function Input({
   options = [],
   onChange,
 }: InputProps) {
+
+  const [visiblePassword, setVisiblePassword] = useState(false);
+
+  const inputType = type === ETypeInput.password ? visiblePassword ? "text" : "password" : "text";
+
 
   const input = (
     <div className="flex flex-col relative">
@@ -67,13 +61,25 @@ function Input({
             hover:shadow-md
           `}
           placeholder={placeholder}
-          type={type == ETypeInput.password ? "password" : "text"}
+          type={inputType}
           value={value}
           onChange={onChange}
         />
       )}
       {type === ETypeInput.password && (
-        <Eye className="self-end absolute right-2 top-1/2 hover:cursor-pointer" color="#64748B" onClick={() => showPassword()} />
+        visiblePassword ? (
+          <EyeOff
+            className="absolute right-2 top-1/2 cursor-pointer"
+            color="#64748B"
+            onClick={() => setVisiblePassword(false)}
+          />
+        ) : (
+          <Eye
+            className="absolute right-2 top-1/2 cursor-pointer"
+            color="#64748B"
+            onClick={() => setVisiblePassword(true)}
+          />
+        )
       )}
       {type === ETypeInput.select && (
         <select
