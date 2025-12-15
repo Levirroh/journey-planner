@@ -19,7 +19,7 @@ function Welcome() {
         <h1 className="text-4xl font-bold">PacknGo</h1>
       </div>
 
-      <div className="h-1/2 w-full bg-blue-400 flex justify-evenly items-center">
+      <div className="h-1/2 w-full bg-blue-400 flex flex-col sm:justify-evenly justify-center gap-15 sm:gap-0 items-center sm:flex-row">
         <div>
           <Button text="Entrar" href="/login" hoverColor="hover:bg-blue-400" />
         </div>
