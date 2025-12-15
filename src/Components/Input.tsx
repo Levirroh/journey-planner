@@ -42,10 +42,14 @@ function Input({
 
             hover:scale-[1.05]
             focus:scale-[1.05]
+
             hover:border-slate-400
             focus:border-slate-400
+
             focus:outline-0
+            hover:outline-0
             focus:shadow-md
+            hover:shadow-md
           `}
           placeholder={placeholder}
           value={value}
