@@ -38,7 +38,7 @@ function Register() {
         nickname,
         email,
         phone,
-        birth: birthFormatted,   // <- agora sim!
+        birth: birthFormatted,
         country,
         state,
         city,
