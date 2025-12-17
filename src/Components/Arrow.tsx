@@ -1,4 +1,4 @@
-import arrow from "../Images/arrow-white.svg";
+import { ArrowBigUpDash } from "lucide-react"
 
 enum EDirection {
   up = "up",
@@ -48,7 +48,7 @@ function Arrow({
         ${corner === ELocation.rightTop ? "right-5 top-5" : ""}
       `}
     >
-      <img src={arrow} alt="Return" />
+      <ArrowBigUpDash color="white" />
     </button>
   );
 
