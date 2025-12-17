@@ -1,6 +1,5 @@
 import Navbar from "../Components/Navbar"
 import CompactNavbar from "../Components/CompactNavbar"
-import Arrow from "../Components/Arrow"
 import Feed from "../Components/Feed"
 
 function Home() {
