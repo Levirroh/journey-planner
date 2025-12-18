@@ -8,6 +8,7 @@ type ButtonProps = {
   href?: string
   onClick?: any
   icon?: string
+  textSize?: string
 }
 
 function Button({
@@ -19,7 +20,8 @@ function Button({
   hoverColor = "hover:bg-blue-400",
   focusColor = "focus:bg-blue-400",
   onClick = null,
-  icon = ""
+  icon = "",
+  textSize = "text-2xl"
 }: ButtonProps) {
 
   const button = (
@@ -28,6 +30,7 @@ function Button({
       onClick={onClick}
       className={`
         ${color} ${hoverColor} ${focusColor} ${height} ${width}
+        ${textSize}
         px-4 py-2 rounded-2xl outline-0
 
         text-center flex justify-center items-center
