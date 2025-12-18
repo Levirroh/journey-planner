@@ -1,3 +1,5 @@
+import type { ReactNode } from "react"
+
 type ButtonProps = {
   text?: string
   color?: string
@@ -7,7 +9,7 @@ type ButtonProps = {
   focusColor?: string
   href?: string
   onClick?: any
-  icon?: string
+  icon?: ReactNode;
   textSize?: string
 }
 
@@ -20,7 +22,7 @@ function Button({
   hoverColor = "hover:bg-blue-400",
   focusColor = "focus:bg-blue-400",
   onClick = null,
-  icon = "",
+  icon = null,
   textSize = "text-2xl"
 }: ButtonProps) {
 
@@ -49,7 +51,7 @@ function Button({
       `}
     >
       {text && <div>{text}</div>}
-      {icon && <img src={icon} alt={icon} />}
+      {icon && <span className="ml-2">{icon}</span>}
     </button>
   );
 
