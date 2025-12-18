@@ -1,8 +1,8 @@
 
 enum ETypeLogoContainer {
-  full = "full",
+  big = "full",
   small = "small",
-  fullNoReturn = "fullNoReturn"
+  bigNoReturn = "fullNoReturn"
 }
 
 type logoContainerProps = {
@@ -10,12 +10,12 @@ type logoContainerProps = {
 }
 
 
-function LogoContainer({ type = ETypeLogoContainer.full }: logoContainerProps) {
+function LogoContainer({ type = ETypeLogoContainer.big }: logoContainerProps) {
 
 
   const logoContainer = (
-    <div className={`${type == ETypeLogoContainer.full ? "h-6/10" : type == ETypeLogoContainer.small ? "h-2/10" : "h-6/10"} w-full bg-[url('src/Images/background-dark.png')] bg-no-repeat bg-cover flex flex-col justify-center items-center gap-1`}>
-      {type === ETypeLogoContainer.full && (
+    <div className={`${type == ETypeLogoContainer.big ? "h-6/10" : type == ETypeLogoContainer.small ? "h-2/10" : "h-6/10"} w-full bg-[url('src/Images/background-dark.png')] bg-no-repeat bg-cover flex flex-col justify-center items-center gap-1`}>
+      {type === ETypeLogoContainer.big && (
         <div>
           <img src="src/Images/Logo.png" className="h-[250px]" alt="" />
         </div>
