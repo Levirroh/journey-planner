@@ -38,7 +38,7 @@ function Input({
 
   const input = (
     <div className="flex flex-col relative">
-      <label className="pl-2">{text}</label>
+      <label className="pl-2 text-white">{text}</label>
 
       {(type === ETypeInput.input || type === ETypeInput.password) && (
         <input
