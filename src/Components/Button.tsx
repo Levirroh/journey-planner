@@ -3,27 +3,31 @@ import type { ReactNode } from "react"
 type ButtonProps = {
   text?: string
   color?: string
+  textColor?: string
+  borderColor?: string
   height?: string
   width?: string
   hoverColor?: string
-  focusColor?: string
   href?: string
   onClick?: any
   icon?: ReactNode;
   textSize?: string
+  hoverTextColor?: string
 }
 
 function Button({
   text = "",
   color = "bg-white",
+  textColor = "text-black",
+  borderColor = "border-white",
   height = "h-15",
   width = "w-25",
   href = "",
   hoverColor = "hover:bg-blue-400",
-  focusColor = "focus:bg-blue-400",
   onClick = null,
   icon = null,
-  textSize = "text-2xl"
+  textSize = "text-2xl",
+  hoverTextColor = "hover:text-white"
 }: ButtonProps) {
 
   const button = (
@@ -31,8 +35,8 @@ function Button({
       type="button"
       onClick={onClick}
       className={`
-        ${color} ${hoverColor} ${focusColor} ${height} ${width}
-        ${textSize}
+        ${color} ${hoverColor} ${height} ${width}
+        ${textSize} ${textColor} ${borderColor} ${hoverTextColor}
         px-4 py-2 rounded-2xl outline-0
 
         text-center flex justify-center items-center
