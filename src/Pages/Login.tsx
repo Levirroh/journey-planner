@@ -3,6 +3,7 @@ import axios from "axios";
 import Button from "../Components/Button"
 import Arrow from "../Components/Arrow"
 import Input, { ETypeInput } from "../Components/Input"
+import LogoContainer from "../Components/LogoContainer";
 
 function Login() {
   const [nickname, setNickname] = useState("");
@@ -27,11 +28,8 @@ function Login() {
 
   return (
     <div className="h-screen w-screen flex flex-col items-center">
-      <Arrow text="Voltar" href="/" />
-      <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white text-6xl">
-        <h1>PacknGo</h1>
-      </div>
-      <div className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
+      <LogoContainer />
+      <div className="h-3/5 bg-gradient-to-br from-blue-500 to-blue-400 w-full flex flex-col items-center justify-evenly">
         {error &&
           (
             <div className="absolute top-169 left-150">
@@ -64,7 +62,7 @@ function Login() {
           </div>
         </div>
         <div>
-          <Button text="Entrar" width="w-45" color="bg-slate-300" hoverColor="hover:bg-blue-400" onClick={Login} />
+          <Button text="Entrar" width="w-45" color="bg-zinc-800" textColor="text-white" borderColor="border-white" hoverColor="hover:bg-zinc-800" onClick={Login} />
         </div>
       </div>
     </div>
