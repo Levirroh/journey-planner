@@ -3,6 +3,7 @@ import axios from "axios";
 import Button from "../Components/Button";
 import Arrow from "../Components/Arrow"
 import Input, { ETypeInput } from "../Components/Input"
+import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer";
 
 
 function Register() {
@@ -93,11 +94,7 @@ function Register() {
 
   return (
     <div className="h-screen w-screen flex flex-col items-center">
-      <div className="h-2/5 flex bg-blue-400 w-full items-center justify-center font-bold text-white relative">
-        <Arrow text="Voltar" href="/" />
-        <h1 className="text-6xl">PacknGo</h1>
-        <h2 className="absolute left-5 bottom-3 text-2xl">Crie sua conta</h2>
-      </div>
+      <LogoContainer type={ETypeLogoContainer.small} />
       {error &&
         (
           <div className="absolute self-center">
@@ -108,7 +105,7 @@ function Register() {
             </div>
           </div>
         )}
-      <form className="h-3/5 bg-slate-200 w-full flex flex-col items-center justify-evenly">
+      <form className="h-full bg-gradient-to-br from-blue-500 to-blue-400 w-full flex flex-col items-center justify-evenly">
         {page == 0 && (
           <div>
             <div className="flex w-screen justify-center gap-50">
@@ -237,7 +234,7 @@ function Register() {
             <Button onClick={() => changePage("previous")} hoverColor="hover:bg-blue-400" text="Previous" />
           )}
           {page == 3 && (
-            <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" focusColor="focus:bg-green-400" />
+            <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" />
           )}
           {page != 3 && (
             <Button onClick={() => changePage("next")} text="Next" hoverColor="hover:bg-blue-400" />
