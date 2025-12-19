@@ -1,13 +1,13 @@
-import { ArrowBigUpDash } from "lucide-react"
+import { ArrowBigLeftDash } from "lucide-react"
 
-enum EDirection {
+export enum EDirection {
   up = "up",
   down = "down",
   left = "left",
   right = "right"
 }
 
-enum ELocation {
+export enum ELocation {
   leftDown = "leftDown",
   leftTop = "leftTop",
   rightDown = "rightDown",
@@ -18,7 +18,7 @@ type ArrowProps = {
   direction?: EDirection
   color?: string
   size?: string
-  text: string
+  text?: string
   corner?: ELocation
   href?: string
 }
@@ -26,7 +26,7 @@ type ArrowProps = {
 function Arrow({
   direction = EDirection.left,
   color = "bg-white",
-  size = "15",
+  size = "w-20 h-15",
   text = "",
   corner = ELocation.leftTop,
   href = "",
@@ -36,7 +36,7 @@ function Arrow({
     <button
       className={`
         p-2 flex items-center justify-center border-1 border-white rounded-2xl 
-        absolute w-20 h-15 hover:h-16 hover:w-30 hover:duration-150 duration-150 cursor-pointer
+        absolute ${size} hover:h-16 hover:w-30 hover:duration-150 duration-150 cursor-pointer
 
         ${direction === EDirection.up ? "rotate-90" : ""}
         ${direction === EDirection.down ? "-rotate-90" : ""}
@@ -48,7 +48,7 @@ function Arrow({
         ${corner === ELocation.rightTop ? "right-5 top-5" : ""}
       `}
     >
-      <ArrowBigUpDash color="white" />
+      <ArrowBigLeftDash color="white" />
     </button>
   );
 
