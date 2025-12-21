@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import Button from "../Components/Button";
-import Arrow from "../Components/Arrow"
 import Input, { ETypeInput } from "../Components/Input"
 import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer";
 
@@ -63,7 +62,7 @@ function Register() {
 
 
   function changePage(operation: string) {
-    if ((page <= 0 && operation == "previous") || (page > 2 && operation == "next")) return;
+    if ((page <= 0 && operation == "previous") || (page > 6 && operation == "next")) return;
     if (operation == "previous") setPage(page - 1);
     else {
       if (VerifyData()) {
@@ -106,47 +105,46 @@ function Register() {
           </div>
         )}
       <form className="h-full bg-gradient-to-br from-blue-500 to-blue-400 w-full flex flex-col items-center justify-evenly">
+
         {page == 0 && (
+          // Texto, apresentação
           <div>
-            <div className="flex w-screen justify-center gap-50">
-              <div>
-                <Input
-                  text="Full Name"
-                  placeholder="John Doe"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                />
 
-                <Input
-                  text="How would you like to be called"
-                  placeholder="JD"
-                  value={nickname}
-                  onChange={(e) => setNickname(e.target.value)}
-                />
-
-                <Input
-                  text="Email"
-                  placeholder="jhon_theCoolOne@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Input
-                  text="Birthdate"
-                  placeholder="01/01/2000"
-                  value={birth}
-                  onChange={(e) => setBirthdate(e.target.value)}
-                />
-                <Input
-                  text="Phone (optional)"
-                  placeholder="(99) 99999-9999"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </div>
-            </div>
           </div>
         )}
         {page == 1 && (
+          <div>
+            <Input
+              text="Full Name"
+              placeholder="John Doe"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+            <Input
+              text="Email"
+              placeholder="jhon_theCoolOne@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+        )}
+        {page == 2 && (
+          <div>
+            <Input
+              text="How would you like to be called"
+              placeholder="JD"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+            <Input
+              text="Birthdate"
+              placeholder="01/01/2000"
+              value={birth}
+              onChange={(e) => setBirthdate(e.target.value)}
+            />
+          </div>
+        )}
+        {page == 3 && (
           <div>
             <label>País:</label>
             <input name="country" />
@@ -157,7 +155,10 @@ function Register() {
             <label>Cidade:</label>
             <input name="city" />
 
-
+          </div>
+        )}
+        {page == 4 && (
+          <div>
             <Input
               type={ETypeInput.select}
               text="Favorite Language"
@@ -165,7 +166,6 @@ function Register() {
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
             />
-
             <Input
               type={ETypeInput.select}
               text="Favorite Currency"
@@ -173,12 +173,18 @@ function Register() {
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             />
+            <Input
+              type={ETypeInput.select}
+              text="Favorite Travel Objective"
+              options={["Leisure", "Business", "Adventure", "Culture", "Gastronomy"]}
+              value={travelType}
+              onChange={(e) => setTravelType(e.target.value)}
+            />
           </div>
         )}
-        {page == 2 && (
+        {page == 5 && (
+          // pais de interesse(s)
           <div>
-            <h2>Preferências de viagem (opcional)</h2>
-            <label>Três países que gostaria de visitar:</label>
             <Input
               type={ETypeInput.select}
               text="Wish Country Nº1"
@@ -201,42 +207,48 @@ function Register() {
               onChange={(e) => setWishCountryThree(e.target.value)}
             />
 
-            <Input
-              type={ETypeInput.select}
-              text="Favorite Travel Objective"
-              options={["Leisure", "Business", "Adventure", "Culture", "Gastronomy"]}
-              value={travelType}
-              onChange={(e) => setTravelType(e.target.value)}
-            />
           </div>
         )}
-
-        {page == 3 && (
+        {page == 6 && (
+          // Telefone senha
           <div>
+
+            <Input
+              text="Phone (optional)"
+              placeholder="(99) 99999-9999"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
             <Input
               type={ETypeInput.input}
               text="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+          </div>
+        )}
+        {page == 7 && (
+          // Tela final
+          <div></div>
+        )}
+        {page == 0 && (
+          <div>
+            <div className="flex w-screen justify-center gap-50">
+              <div>
 
-            <Input
-              type={ETypeInput.input}
-              text="Confirm you password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
 
+              </div>
+            </div>
           </div>
         )}
         <div className="flex gap-5">
           {page > 0 && (
             <Button onClick={() => changePage("previous")} hoverColor="hover:bg-blue-400" text="Previous" />
           )}
-          {page == 3 && (
+          {page == 7 && (
             <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" />
           )}
-          {page != 3 && (
+          {page != 7 && (
             <Button onClick={() => changePage("next")} text="Next" hoverColor="hover:bg-blue-400" />
           )}
         </div>
