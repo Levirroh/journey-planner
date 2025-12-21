@@ -107,7 +107,7 @@ function Register() {
     <div className="h-screen w-screen flex flex-col items-center">
       <LogoContainer type={ETypeLogoContainer.small} />
       <div className="bg-white w-full p-1"></div>
-      <div className="h-full flex flex-col w-full items-center bg-gradient-to-br from-blue-500 to-blue-400">
+      <div className="h-full flex flex-col w-full items-center bg-gradient-to-br from-blue-600 to-blue-400">
         <div className="flex items-center justify-center p-5">
           <ProgressDots total={7} activeDots={page} />
         </div>
@@ -115,17 +115,17 @@ function Register() {
 
           <div className="h-3/5">
             {page == 0 && (
-              <div>
-                <div>
-                  <h1>Olá, seja bem-vindo</h1>
+              <div className="text-white h-full text-center flex flex-col items-center justify-between">
+                <div className="text-2xl">
+                  <h1>Hello, Welcome!</h1>
                 </div>
-                <div>
-                  <p>
-                    Ficamos muito felizes de ter você por aqui! Vamos fazer algumas perguntas rápidas para te ajudar a criar um perfil que é a sua cara!
+                <div className="w-3/5">
+                  <p className="text-[20px]">
+                    We're so happy to have you here! We will ask a few quick questions to help us create a profile that's uniquely yours!
                   </p>
                 </div>
-                <div>
-                  <h2>Vamos lá?</h2>
+                <div className="text-2xl">
+                  <h2>Shall we?</h2>
                 </div>
               </div>
             )}
@@ -261,8 +261,11 @@ function Register() {
             {page == 7 && (
               <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" />
             )}
-            {page != 7 && (
+            {page != 7 && page != 0 && (
               <Button onClick={() => changePage("next")} text="Next" hoverColor="hover:bg-blue-400" />
+            )}
+            {page == 0 && (
+              <Button onClick={() => changePage("next")} text="Let's go!" width="w-45" height="h-15" color="bg-zinc-800" textColor="text-white" borderColor="border-white" hoverColor="hover:bg-zinc-800" />
             )}
           </div>
         </form>
