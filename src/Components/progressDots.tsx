@@ -13,7 +13,7 @@ function ProgressDots({
       {Array.from({ length: total }).map((_, index) => (
         <div
           key={index}
-          className={`h-4 w-4 mx-2 rounded-full transition-colors
+          className={`h-3 w-3 mx-2 rounded-full transition-colors
             ${index < activeDots ? "bg-white" : "bg-zinc-800"}
           `}
         />
