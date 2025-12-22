@@ -44,7 +44,7 @@ function Input({
         <input
           className={`
             w-full h-12 px-4
-            rounded-xl border-2 border-slate-300
+            rounded-[6px] border-2 border-slate-300
             text-slate-700 ${color}
             transition-all duration-100
             transform
