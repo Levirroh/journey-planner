@@ -130,115 +130,164 @@ function Register() {
               </div>
             )}
             {page == 1 && (
-              <div>
-                <Input
-                  text="Full Name"
-                  placeholder="John Doe"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                />
-                <Input
-                  text="Email"
-                  placeholder="jhon_theCoolOne@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+              <div className="h-full flex flex-col items-center">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                  <img src="src\Images\plane-icon.png" className="h-[60px] w-[79px]" />
+                  <div className="text-center text-[18px]">
+                    <h2>Great! How can we call you?</h2>
+                    <h2>And what's your email?</h2>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-5">
+                  <Input
+                    text="Full Name"
+                    placeholder="John Doe"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                  />
+                  <Input
+                    text="Email"
+                    placeholder="jhon_theCoolOne@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
               </div>
             )}
             {page == 2 && (
-              <div>
-                <Input
-                  text="How would you like to be called"
-                  placeholder="JD"
-                  value={nickname}
-                  onChange={(e) => setNickname(e.target.value)}
-                />
-                <Input
-                  text="Birthdate"
-                  placeholder="01/01/2000"
-                  value={birth}
-                  onChange={(e) => setBirthdate(e.target.value)}
-                />
+              <div className="h-full flex flex-col items-center">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                  <img src="src\Images\passport-icon.png" className="h-[60px] w-[79px]" />
+                  <div className="text-center text-[18px]">
+                    <h2>We need a little more information</h2>
+                    <h2>It's quick!</h2>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-5">
+                  <Input
+                    text="How would you like to be called"
+                    placeholder="JD"
+                    value={nickname}
+                    onChange={(e) => setNickname(e.target.value)}
+                  />
+                  <Input
+                    text="Birthdate"
+                    placeholder="01/01/2000"
+                    value={birth}
+                    onChange={(e) => setBirthdate(e.target.value)}
+                  />
+                </div>
               </div>
             )}
             {page == 3 && (
-              <div>
-                <label>País:</label>
-                <input name="country" />
+              <div className="h-full flex flex-col items-center">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                  <img src="src\Images\earth-icon.png" className="h-[70px] w-[65px]" />
+                  <div className="text-center text-[18px]">
+                    <h2>Tell us where you live at the moment!</h2>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-5">
+                  <label>País:</label>
+                  <input name="country" />
 
-                <label>Estado:</label>
-                <input name="state" />
+                  <label>Estado:</label>
+                  <input name="state" />
 
-                <label>Cidade:</label>
-                <input name="city" />
-
+                  <label>Cidade:</label>
+                  <input name="city" />
+                </div>
               </div>
             )}
             {page == 4 && (
-              <div>
-                <Input
-                  type={ETypeInput.select}
-                  text="Favorite Language"
-                  options={["Portuguese", "English", "Spanish"]}
-                  value={language}
-                  onChange={(e) => setLanguage(e.target.value)}
-                />
-                <Input
-                  type={ETypeInput.select}
-                  text="Favorite Currency"
-                  options={["BRL (R$)", "USD ($)", "EUR (€)"]}
-                  value={currency}
-                  onChange={(e) => setCurrency(e.target.value)}
-                />
-                <Input
-                  type={ETypeInput.select}
-                  text="Favorite Travel Objective"
-                  options={["Leisure", "Business", "Adventure", "Culture", "Gastronomy"]}
-                  value={travelType}
-                  onChange={(e) => setTravelType(e.target.value)}
-                />
+              <div className="h-full flex flex-col items-center">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                  <img src="src\Images\case-icon.png" className="h-[60px] w-[79px]" />
+                  <div className="text-center text-[18px]">
+                    <h2>Teel us about your preferences!</h2>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-5">
+                  <Input
+                    type={ETypeInput.select}
+                    text="Favorite Language"
+                    options={["Portuguese", "English", "Spanish"]}
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                  />
+                  <Input
+                    type={ETypeInput.select}
+                    text="Favorite Currency"
+                    options={["BRL (R$)", "USD ($)", "EUR (€)"]}
+                    value={currency}
+                    onChange={(e) => setCurrency(e.target.value)}
+                  />
+                  <Input
+                    type={ETypeInput.select}
+                    text="Favorite Travel Objective"
+                    options={["Leisure", "Business", "Adventure", "Culture", "Gastronomy"]}
+                    value={travelType}
+                    onChange={(e) => setTravelType(e.target.value)}
+                  />
+                </div>
               </div>
             )}
             {page == 5 && (
-              <div>
-                <Input
-                  type={ETypeInput.select}
-                  text="Wish Country Nº1"
-                  options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-                  value={wishCountryOne}
-                  onChange={(e) => setWishCountryOne(e.target.value)}
-                />
-                <Input
-                  type={ETypeInput.select}
-                  text="Wish Country Nº2"
-                  options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-                  value={wishCountryTwo}
-                  onChange={(e) => setWishCountryTwo(e.target.value)}
-                />
-                <Input
-                  type={ETypeInput.select}
-                  text="Wish Country Nº3"
-                  options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-                  value={wishCountryThree}
-                  onChange={(e) => setWishCountryThree(e.target.value)}
-                />
-
+              <div className="h-full flex flex-col items-center">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                  <img src="src\Images\map-icon.png" className="h-[60px] w-[79px]" />
+                  <div className="text-center text-[18px]">
+                    <h2>Now, A few extra data that will make the profile, your image!</h2>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-5">
+                  <Input
+                    type={ETypeInput.select}
+                    text="Wish Country Nº1"
+                    options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+                    value={wishCountryOne}
+                    onChange={(e) => setWishCountryOne(e.target.value)}
+                  />
+                  <Input
+                    type={ETypeInput.select}
+                    text="Wish Country Nº2"
+                    options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+                    value={wishCountryTwo}
+                    onChange={(e) => setWishCountryTwo(e.target.value)}
+                  />
+                  <Input
+                    type={ETypeInput.select}
+                    text="Wish Country Nº3"
+                    options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+                    value={wishCountryThree}
+                    onChange={(e) => setWishCountryThree(e.target.value)}
+                  />
+                </div>
               </div>
             )}
             {page == 6 && (
-              <div>
-                <Input
-                  text="Phone (optional)"
-                  placeholder="(99) 99999-9999"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-                <Input
-                  type={ETypeInput.input}
-                  text="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+              <div className="h-full flex flex-col items-center">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                  <img src="src\Images\plane-icon.png" className="h-[60px] w-[79px]" />
+                  <div className="text-center flex flex-col items-center w-full text-[18px]">
+                    <h2 className="w-2/3">And, at last but not least! What's your phone number for account recovery</h2>
+                    <h2>and what will be your password?</h2>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-5">
+                  <Input
+                    text="Phone (optional)"
+                    placeholder="(99) 99999-9999"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                  <Input
+                    type={ETypeInput.input}
+                    text="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
               </div>
             )}
             {page == 7 && (
@@ -252,17 +301,17 @@ function Register() {
             />
           )}
 
-          <div className="flex gap-5 w-full items-center justify-center h-2/5 bg-zinc-200 relative">
+          <div className={`flex gap-10 w-full items-center justify-center h-2/5 ${page == 0 ? "bg-zinc-200" : "bg-transparent"} relative`}>
 
 
             {page > 0 && (
-              <Button onClick={() => changePage("previous")} hoverColor="hover:bg-blue-400" text="Previous" />
+              <Button onClick={() => changePage("previous")} color="bg-zinc-800" textColor="text-white" hoverColor="hover:bg-zinc-800" text="Previous" width="w-45" height="h-15" />
             )}
             {page == 7 && (
-              <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" />
+              <Button onClick={save} text="Confirm" hoverColor="hover:bg-green-400" width="w-45" height="h-15" />
             )}
             {page != 7 && page != 0 && (
-              <Button onClick={() => changePage("next")} text="Next" hoverColor="hover:bg-blue-400" />
+              <Button onClick={() => changePage("next")} text="Next" hoverColor="hover:bg-zinc-800" width="w-45" height="h-15" />
             )}
             {page == 0 && (
               <Button onClick={() => changePage("next")} text="Let's go!" width="w-45" height="h-15" color="bg-zinc-800" textColor="text-white" borderColor="border-white" hoverColor="hover:bg-zinc-800" />
