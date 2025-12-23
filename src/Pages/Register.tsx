@@ -140,12 +140,16 @@ function Register() {
                 </div>
                 <div className="flex flex-col gap-5">
                   <Input
+                    width="w-66"
+                    height="h-12"
                     text="Full Name"
                     placeholder="John Doe"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                   />
                   <Input
+                    width="w-66"
+                    height="h-12"
                     text="Email"
                     placeholder="jhon_theCoolOne@gmail.com"
                     value={email}
@@ -165,12 +169,16 @@ function Register() {
                 </div>
                 <div className="flex flex-col gap-5">
                   <Input
+                    width="w-66"
+                    height="h-12"
                     text="How would you like to be called"
                     placeholder="JD"
                     value={nickname}
                     onChange={(e) => setNickname(e.target.value)}
                   />
                   <Input
+                    width="w-66"
+                    height="h-12"
                     text="Birthdate"
                     placeholder="01/01/2000"
                     value={birth}
@@ -181,27 +189,46 @@ function Register() {
             )}
             {page == 3 && (
               <div className="h-full flex flex-col items-center">
-                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5 pb-5">
                   <img src="src\Images\earth-icon.png" className="h-[70px] w-[65px]" />
                   <div className="text-center text-[18px]">
                     <h2>Tell us where you live at the moment!</h2>
                   </div>
                 </div>
                 <div className="flex flex-col gap-5">
-                  <label>País:</label>
-                  <input name="country" />
-
-                  <label>Estado:</label>
-                  <input name="state" />
-
-                  <label>Cidade:</label>
-                  <input name="city" />
+                  <Input
+                    width="w-66"
+                    height="h-12"
+                    type={ETypeInput.select}
+                    text="Wish Country Nº3"
+                    options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  />
+                  <Input
+                    width="w-66"
+                    height="h-12"
+                    type={ETypeInput.select}
+                    text="Wish Country Nº3"
+                    options={["Santa Catarina", "São Paulo", "Rio de Janeiro", "Minas Gerais", "Bahia", "Paraná", "Rio Grande do Sul", "Ceará", "Pernambuco", "Goiás"]}
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                  />
+                  <Input
+                    width="w-66"
+                    height="h-12"
+                    type={ETypeInput.select}
+                    text="Wish Country Nº3"
+                    options={["Joinville", "Florianópolis", "Blumenau", "São José", "Criciúma", "Itajaí", "Lages", "Balneário Camboriú", "Tubarão", "Palhoça"]}
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
                 </div>
               </div>
             )}
             {page == 4 && (
               <div className="h-full flex flex-col items-center">
-                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5 pb-5">
                   <img src="src\Images\case-icon.png" className="h-[60px] w-[79px]" />
                   <div className="text-center text-[18px]">
                     <h2>Teel us about your preferences!</h2>
@@ -209,6 +236,8 @@ function Register() {
                 </div>
                 <div className="flex flex-col gap-5">
                   <Input
+                    width="w-66"
+                    height="h-12"
                     type={ETypeInput.select}
                     text="Favorite Language"
                     options={["Portuguese", "English", "Spanish"]}
@@ -216,6 +245,8 @@ function Register() {
                     onChange={(e) => setLanguage(e.target.value)}
                   />
                   <Input
+                    width="w-66"
+                    height="h-12"
                     type={ETypeInput.select}
                     text="Favorite Currency"
                     options={["BRL (R$)", "USD ($)", "EUR (€)"]}
@@ -223,6 +254,8 @@ function Register() {
                     onChange={(e) => setCurrency(e.target.value)}
                   />
                   <Input
+                    width="w-66"
+                    height="h-12"
                     type={ETypeInput.select}
                     text="Favorite Travel Objective"
                     options={["Leisure", "Business", "Adventure", "Culture", "Gastronomy"]}
@@ -234,7 +267,7 @@ function Register() {
             )}
             {page == 5 && (
               <div className="h-full flex flex-col items-center">
-                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
+                <div className=" flex flex-col pt-5 items-center text-white h-full gap-5 pb-5">
                   <img src="src\Images\map-icon.png" className="h-[60px] w-[79px]" />
                   <div className="text-center text-[18px]">
                     <h2>Now, A few extra data that will make the profile, your image!</h2>
@@ -242,6 +275,8 @@ function Register() {
                 </div>
                 <div className="flex flex-col gap-5">
                   <Input
+                    width="w-66"
+                    height="h-12"
                     type={ETypeInput.select}
                     text="Wish Country Nº1"
                     options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
@@ -249,6 +284,8 @@ function Register() {
                     onChange={(e) => setWishCountryOne(e.target.value)}
                   />
                   <Input
+                    width="w-66"
+                    height="h-12"
                     type={ETypeInput.select}
                     text="Wish Country Nº2"
                     options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
@@ -256,6 +293,8 @@ function Register() {
                     onChange={(e) => setWishCountryTwo(e.target.value)}
                   />
                   <Input
+                    width="w-66"
+                    height="h-12"
                     type={ETypeInput.select}
                     text="Wish Country Nº3"
                     options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
@@ -266,7 +305,7 @@ function Register() {
               </div>
             )}
             {page == 6 && (
-              <div className="h-full flex flex-col items-center">
+              <div className="h-full flex flex-col items-center w-full">
                 <div className=" flex flex-col pt-5 items-center text-white h-full gap-5">
                   <img src="src\Images\plane-icon.png" className="h-[60px] w-[79px]" />
                   <div className="text-center flex flex-col items-center w-full text-[18px]">
@@ -274,14 +313,18 @@ function Register() {
                     <h2>and what will be your password?</h2>
                   </div>
                 </div>
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 w-fit h-fit">
                   <Input
+                    width="w-66"
+                    height="h-12"
                     text="Phone (optional)"
                     placeholder="(99) 99999-9999"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
                   <Input
+                    width="w-66"
+                    height="h-12"
                     type={ETypeInput.input}
                     text="Password"
                     value={password}
