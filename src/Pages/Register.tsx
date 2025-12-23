@@ -196,33 +196,7 @@ function Register() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-5">
-                  <Input
-                    width="w-66"
-                    height="h-12"
-                    type={ETypeInput.select}
-                    text="Wish Country Nº3"
-                    options={["Brazil", "EUA", "Spain", "France", "Italy", "Germany", "Argentina", "Japan", "China", "Australia"]}
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                  />
-                  <Input
-                    width="w-66"
-                    height="h-12"
-                    type={ETypeInput.select}
-                    text="Wish Country Nº3"
-                    options={["Santa Catarina", "São Paulo", "Rio de Janeiro", "Minas Gerais", "Bahia", "Paraná", "Rio Grande do Sul", "Ceará", "Pernambuco", "Goiás"]}
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                  />
-                  <Input
-                    width="w-66"
-                    height="h-12"
-                    type={ETypeInput.select}
-                    text="Wish Country Nº3"
-                    options={["Joinville", "Florianópolis", "Blumenau", "São José", "Criciúma", "Itajaí", "Lages", "Balneário Camboriú", "Tubarão", "Palhoça"]}
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                  />
+
                 </div>
               </div>
             )}
