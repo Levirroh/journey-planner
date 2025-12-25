@@ -9,8 +9,6 @@ function Login() {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-
-
   async function Login() {
     try {
       const response = await axios.post("http://localhost:8000/users/login", {
@@ -25,7 +23,6 @@ function Login() {
       setTimeout(() => setError(false), 3000);
     }
   }
-
   return (
     <div className="h-screen w-screen flex flex-col items-center">
       <LogoContainer />
@@ -49,8 +46,6 @@ function Login() {
               onChange={(e) => setNickname(e.target.value)}
             />
           </div>
-
-
           <div className="flex flex-col">
             <Input
               text="Password:"
