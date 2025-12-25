@@ -4,7 +4,7 @@ import Button from "../Components/Button";
 import Input, { ETypeInput } from "../Components/Input"
 import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer";
 import ProgressDots from "../Components/progressDots";
-import { DivideSquare } from "lucide-react";
+import { BrickWall, DivideSquare } from "lucide-react";
 
 
 function Register() {
@@ -73,34 +73,34 @@ function Register() {
   }
 
   function VerifyData() {
-    // if (page == 0) {
-    //   if (fullName == "" || email == "" || nickname == "" || birth == "") {
-    //     setError(true);
-    //     return;
-    //   }
-    // } else if (page == 1) {
-
-    // } else if (page == 2) {
-
-    // } else if (page == 3) {
-    //   if (password == "" || confirmPassword == "") {
-    //     setError(true);
-    //     return;
-    //   }
-    // }
-    // setError(false);
+    if (page == 1) {
+      if (fullName == "" || email == "") {
+        setError(true);
+        return;
+      }
+    } else if (page == 2) {
+      if (nickname == "" || birth == "") {
+        setError(true);
+        return;
+      }
+    } else if (page == 3) {
+      if (country == "" || state == "" || city == "") {
+        setError(true);
+        return;
+      }
+    } else if (page == 4) {
+      if (language == "" || currency == "" || travelType == "") {
+        setError(true);
+        return;
+      }
+    } else if (page == 6) {
+      if (password == "" || phone == "") {
+        setError(true);
+        return;
+      }
+    }
+    setError(false);
     return true;
-  }
-  {/* {error && 
-    (
-      <div className="absolute self-center">
-        <div className="relative bg-red-400 text-white text-md top-95 left-50 rounded-2xl p-3" >
-          <div className="absolute top-11 left-4 w-0 h-0 border-t-[8px] border-t-red-400 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent">
-          </div>
-          <p>Dados cadastrados inválidos.</p>
-        </div>
-      </div>
-    )} */
   }
 
   return (
@@ -112,6 +112,16 @@ function Register() {
           <ProgressDots total={7} activeDots={page} />
         </div>
         <form className="h-full w-full flex flex-col items-center justify-evenly">
+          {error &&
+            (
+              <div className="absolute self-center">
+                <div className="relative bg-red-400 text-white text-md top-95 left-50 rounded-2xl p-3" >
+                  <div className="absolute top-11 left-4 w-0 h-0 border-t-[8px] border-t-red-400 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent">
+                  </div>
+                  <p>Dados cadastrados inválidos.</p>
+                </div>
+              </div>
+            )}
 
           <div className="h-3/5">
             {page == 0 && (
