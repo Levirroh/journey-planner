@@ -3,12 +3,12 @@ import Button from "../Components/Button.tsx"
 import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer.tsx";
 
 function Welcome() {
-  async function insertTestData() {
-    try {
-      await axios.get("http://localhost:8000/users/login");
-    } catch (error) {
-    }
-  }
+  // async function insertTestData() {
+  //   try {
+  //     await axios.get("http://localhost:8000/users/login");
+  //   } catch (error) {
+  //   }
+  // }
 
 
   return (
