@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import Button from "../Components/Button"
-import Arrow from "../Components/Arrow"
 import Input, { ETypeInput } from "../Components/Input"
 import LogoContainer from "../Components/LogoContainer";
 
