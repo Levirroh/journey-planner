@@ -67,7 +67,7 @@ function Register() {
     else {
       if (VerifyData()) {
         if (page == 6) {
-          window.location.href = "/home";
+          window.location.href = "/login";
         } else {
           setPage(page + 1)
         }
