@@ -66,7 +66,11 @@ function Register() {
     if (operation == "previous") setPage(page - 1);
     else {
       if (VerifyData()) {
-        setPage(page + 1)
+        if (page == 6) {
+          window.location.href = "/home";
+        } else {
+          setPage(page + 1)
+        }
       }
     }
   }
@@ -316,10 +320,11 @@ function Register() {
                 </div>
               </div>
             )}
-            {page == 7 && (
+            {/* {page == 7 && (
               // Tela final
-              <div></div>
-            )}
+              <div>
+              </div>
+            )} */}
           </div>
           {page == 0 && (
             <div
