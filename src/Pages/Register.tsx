@@ -9,7 +9,6 @@ import ErrorMessage from "../Components/Utils/ErrorMessage";
 
 function Register() {
   const [page, setPage] = useState(0);
-  const [error, setError] = useState(false);
   const [errorTrigger, setErrorTrigger] = useState(0);
 
 
@@ -57,8 +56,7 @@ function Register() {
         window.location.href = "/login";
       }
     } catch (err) {
-      setError(true);
-      setTimeout(() => setError(false), 3000);
+      setErrorTrigger(prev => prev + 1);
     }
   }
 
