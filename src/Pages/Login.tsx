@@ -32,25 +32,28 @@ function Login() {
               <div className="relative bg-red-400 text-white text-md rounded-2xl p-3" >
                 <div className="absolute top-11 left-4 w-0 h-0 border-t-[8px] border-t-red-400 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent">
                 </div>
-                <p>Usuário ou senha inválidos.</p>
+                <p>Username or Password are incorrect.</p>
               </div>
             </div>
           )}
         <div className="flex flex-col gap-5">
           <div className="flex flex-col">
             <Input
-              text="Username or Email:"
-              placeholder="jhondoe"
+              width="w-66"
+              height="h-12"
+              text="Full Name"
+              placeholder="JTCO"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
             <Input
-              text="Password:"
-              placeholder="********"
-              value={password}
+              width="w-66"
+              height="h-12"
               type={ETypeInput.password}
+              placeholder="*********"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
