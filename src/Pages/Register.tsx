@@ -4,7 +4,7 @@ import Button from "../Components/Button";
 import Input, { ETypeInput } from "../Components/Input"
 import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer";
 import ProgressDots from "../Components/progressDots";
-import ErrorMessage from "../Components/Utils/ErrorMessage";
+import ErrorMessage from "../Components/Utils/ScreenMessage";
 
 
 function Register() {
