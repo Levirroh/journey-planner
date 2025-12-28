@@ -4,11 +4,13 @@ import Button from "../Components/Button";
 import Input, { ETypeInput } from "../Components/Input"
 import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer";
 import ProgressDots from "../Components/progressDots";
+import ErrorMessage from "../Components/Utils/ErrorMessage";
 
 
 function Register() {
   const [page, setPage] = useState(0);
   const [error, setError] = useState(false);
+  const [errorTrigger, setErrorTrigger] = useState(0);
 
 
   // user data
@@ -61,71 +63,49 @@ function Register() {
   }
 
 
-  function changePage(operation: string) {
-    if ((page <= 0 && operation == "previous") || (page > 6 && operation == "next")) return;
-    if (operation == "previous") setPage(page - 1);
-    else {
-      if (VerifyData()) {
-        if (page == 6) {
-          window.location.href = "/login";
-        } else {
-          setPage(page + 1)
-        }
-      }
+  function changePage(operation: "previous" | "next") {
+    if (operation === "previous") {
+      if (page <= 0) return;
+      setPage(page - 1);
+      return;
+    }
+
+    const hasError = VerifyData();
+    if (hasError) return;
+
+    if (page === 6) {
+      window.location.href = "/login";
+    } else {
+      setPage(page + 1);
     }
   }
 
   function VerifyData() {
-    if (page == 1) {
-      if (fullName == "" || email == "") {
-        setError(true);
-        return;
-      }
-    } else if (page == 2) {
-      if (nickname == "" || birth == "") {
-        setError(true);
-        return;
-      }
-    } else if (page == 3) {
-      if (country == "" || state == "" || city == "") {
-        setError(true);
-        return;
-      }
-    } else if (page == 4) {
-      if (language == "" || currency == "" || travelType == "") {
-        setError(true);
-        return;
-      }
-    } else if (page == 6) {
-      if (password == "" || phone == "") {
-        setError(true);
-        return;
-      }
+    let hasError = false;
+
+    if (page === 1) hasError = !fullName || !email;
+    else if (page === 2) hasError = !nickname || !birth;
+    else if (page === 3) hasError = !country || !state || !city;
+    else if (page === 4) hasError = !language || !currency || !travelType;
+    else if (page === 6) hasError = !password || !phone;
+
+    if (hasError) {
+      setErrorTrigger(prev => prev + 1);
     }
-    setError(false);
-    return true;
+
+    return hasError;
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center">
+    <div className="h-screen w-screen flex flex-col items-center relative">
       <LogoContainer type={ETypeLogoContainer.small} />
+      <ErrorMessage text="Please, fill all the fields!" trigger={errorTrigger} />
       <div className="bg-white w-full p-1"></div>
       <div className="h-full flex flex-col w-full items-center bg-gradient-to-br from-blue-600 to-blue-400">
         <div className="flex items-center justify-center p-5">
           <ProgressDots total={7} activeDots={page} />
         </div>
         <form className="h-full w-full flex flex-col items-center justify-evenly">
-          {error &&
-            (
-              <div className="absolute self-center">
-                <div className="relative bg-red-400 text-white text-md top-95 left-50 rounded-2xl p-3" >
-                  <div className="absolute top-11 left-4 w-0 h-0 border-t-[8px] border-t-red-400 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent">
-                  </div>
-                  <p>Dados cadastrados inválidos.</p>
-                </div>
-              </div>
-            )}
-
           <div className="h-3/5">
             {page == 0 && (
               <div className="text-white h-full text-center flex flex-col items-center justify-between">
