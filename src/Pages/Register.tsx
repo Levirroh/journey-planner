@@ -40,9 +40,9 @@ function Register() {
         email,
         phone,
         birth: birthFormatted,
-        country,
-        state,
-        city,
+        "BR": country,
+        "SC": state,
+        "1": city,
         language,
         currency,
         wishCountryOne,
@@ -187,7 +187,31 @@ function Register() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-5">
-
+                  <Input
+                    width="w-66"
+                    height="h-12"
+                    type={ETypeInput.select}
+                    text="Favorite Language"
+                    options={["Brazil", "EUA", "Australia", "Canada", "France", "Germany", "Italy", "Japan", "Spain", "United Kingdom"]}
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  /><Input
+                    width="w-66"
+                    height="h-12"
+                    type={ETypeInput.select}
+                    text="Favorite Language"
+                    options={["Santa Catarina", "São Paulo", "Rio de Janeiro", "Minas Gerais", "Bahia", "Paraná", "Rio Grande do Sul", "Ceará", "Pernambuco", "Goiás"]}
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                  /><Input
+                    width="w-66"
+                    height="h-12"
+                    type={ETypeInput.select}
+                    text="Favorite Language"
+                    options={["Joinville", "Florianópolis", "Blumenau", "São José", "Criciúma", "Itajaí", "Lages", "Balneário Camboriú", "Tubarão", "Palhoça"]}
+                    value={language}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
                 </div>
               </div>
             )}
