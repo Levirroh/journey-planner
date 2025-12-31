@@ -322,11 +322,6 @@ function Register() {
                 </div>
               </div>
             )}
-            {/* {page == 7 && (
-              // Tela final
-              <div>
-              </div>
-            )} */}
           </div>
           {page == 0 && (
             <div
