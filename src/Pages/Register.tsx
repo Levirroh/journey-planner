@@ -12,7 +12,6 @@ function Register() {
   const [errorTrigger, setErrorTrigger] = useState(0);
 
 
-  // user data
   const [fullName, setFullName] = useState("");
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
