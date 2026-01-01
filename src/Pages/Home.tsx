@@ -1,18 +1,19 @@
-import Navbar from "../Components/Navbar"
 import CompactNavbar from "../Components/CompactNavbar"
-import Feed from "../Components/Feed"
-import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer"
+import Input from "../Components/Input"
 
 function Home() {
 
   return (
     <div>
-      <Navbar />
-      <section className="w-screen">
-        <LogoContainer type={ETypeLogoContainer.smallNoReturn} />
-        <Feed />
+      <section className="w-screen h-screen bg-gradient-to-br from-blue-600 to-blue-400">
+        <div>
+          <Input />
+          <Input />
+        </div>
+        <div>
+          <CompactNavbar />
+        </div>
       </section>
-      <CompactNavbar />
     </div>
   )
 }
