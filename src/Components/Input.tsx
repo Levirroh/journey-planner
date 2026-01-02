@@ -25,7 +25,7 @@ type InputProps = {
 function Input({
   href = "",
   type = ETypeInput.input,
-  text = "Label",
+  text = "",
   placeholder = "Placeholder",
   color = "bg-white",
   value,
@@ -41,7 +41,7 @@ function Input({
 
 
   const input = (
-    <div className="flex flex-col relative w-full h-full">
+    <div className="flex flex-col relative w-full h-full justify-center items-center">
       <label className="pl-2 text-white">{text}</label>
 
       {(type === ETypeInput.input || type === ETypeInput.password) && (
