@@ -2,11 +2,11 @@ import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react"
 
 export enum ETypeInput {
-  input = "input",
-  password = "password",
-  select = "select",
-  submit = "submit",
-  button = "button"
+  input,
+  password,
+  select,
+  submit,
+  button
 }
 
 type InputProps = {
