@@ -1,10 +1,10 @@
 import Arrow from "./Arrow";
 
 export enum ETypeLogoContainer {
-  big = "full",
-  small = "small",
-  bigNoReturn = "bigNoReturn",
-  smallNoReturn = "smallNoReturn"
+  big,
+  small,
+  bigNoReturn,
+  smallNoReturn
 }
 
 type logoContainerProps = {
