@@ -24,6 +24,12 @@ class seeGeo(BaseModel):
 
 #region General
 
+@router.get("/seeAllGeo")
+async def see_geo(session = Depends(get_session)):
+    query = select(Countries).join(States, States.country_code == Countries.code).join(Cities, Cities.state_code == States.code)
+    return query
+
+
 @router.post("/seeGeo")
 async def see_geo(request: seeGeo, session = Depends(get_session)):
     query = select(Countries).join(States, States.country_code == Countries.code).join(Cities, Cities.state_code == States.code).where(
