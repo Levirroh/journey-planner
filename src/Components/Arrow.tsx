@@ -1,17 +1,17 @@
 import { ArrowBigLeftDash } from "lucide-react"
 
 export enum EDirection {
-  up = "up",
-  down = "down",
-  left = "left",
-  right = "right"
+  up,
+  down,
+  left,
+  right
 }
 
 export enum ELocation {
-  leftDown = "leftDown",
-  leftTop = "leftTop",
-  rightDown = "rightDown",
-  rightTop = "rightTop"
+  leftDown,
+  leftTop,
+  rightDown,
+  rightTop
 }
 
 type ArrowProps = {
