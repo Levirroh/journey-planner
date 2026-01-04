@@ -2,6 +2,7 @@ import { use, useState } from "react";
 import Input, { ETypeInput } from "../Components/Input";
 import CompactNavbar from "../Components/CompactNavbar";
 import axios from "axios";
+import Feed from "../Components/Feed";
 
 function Home() {
   const [destiny, setDestiny] = useState("");
@@ -46,7 +47,6 @@ function Home() {
           <Input
             type={ETypeInput.select}
             options={places}
-            // options={places.filter((place: any) => place !== destiny)} // To avoid selecting the same place as destiny (not necessary yet)
             width="w-72"
             height="h-12"
             placeholder="Type from where you are departing!"
@@ -54,7 +54,9 @@ function Home() {
           />
         )}
       </div>
-
+      {places != null && (
+        <Feed destiny={destiny} departure={departure} />
+      )}
       <CompactNavbar />
     </section>
   );
