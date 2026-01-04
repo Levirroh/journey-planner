@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import FlightContainer from "./FlightContainer";
 
-function Feed() {
+type FeedProps = {
+    destiny?: string
+    departure?: string
+}
+
+function Feed({ destiny, departure }: FeedProps) {
     const [feed, setFeed] = useState([]);
     useEffect(() => {
         GetFeed();
-    }, []);
+    }, [destiny, departure]);
 
     async function GetFeed() {
         try {
@@ -15,7 +20,8 @@ function Feed() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    userId: localStorage.getItem("userId"),
+                    destiny: destiny,
+                    departure: departure
                 }),
             });
 
