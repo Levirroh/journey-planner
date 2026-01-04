@@ -4,7 +4,7 @@ import Button from "../Components/Button";
 import Input, { ETypeInput } from "../Components/Input"
 import LogoContainer, { ETypeLogoContainer } from "../Components/LogoContainer";
 import ProgressDots from "../Components/progressDots";
-import ErrorMessage from "../Components/Utils/ScreenMessage";
+import ScreenMessage from "../Components/Utils/ScreenMessage";
 
 
 function Register() {
@@ -96,7 +96,7 @@ function Register() {
   return (
     <div className="h-screen w-screen flex flex-col items-center relative">
       <LogoContainer type={ETypeLogoContainer.small} />
-      <ErrorMessage text="Please, fill all the fields!" trigger={errorTrigger} />
+      <ScreenMessage text="Please, fill all the fields!" trigger={errorTrigger} />
       <div className="bg-white w-full p-1"></div>
       <div className="h-full flex flex-col w-full items-center bg-gradient-to-br from-blue-600 to-blue-400">
         <div className="flex items-center justify-center p-5">
