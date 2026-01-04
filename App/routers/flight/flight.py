@@ -16,6 +16,9 @@ router = APIRouter(
 class seeFlight(BaseModel):
     flight_id: int
 
+class seeFeed(BaseModel):
+    destiny: str
+    departure: str
 
 class newFlight(BaseModel):
     flight_id: int
@@ -31,8 +34,10 @@ async def see_flight(request: seeFlight, session = Depends(get_session)):
     return query
 
 @router.post("/getFeed")
-async def all_flights(session = Depends(get_session)):
-    result = session.exec(select(Flights).joinedload(Flights.plane).joinedload(Flights.seats))
+async def all_flights(request: seeFeed, session = Depends(get_session)):
+    result = session.exec(select(Flights).joinedload(Flights.plane).joinedload(Flights.seats).where(
+        (Flights.destiny == request.destiny) & (Flights.departure == request.departure)
+    ))
     flights = result.all()
     return flights
 
