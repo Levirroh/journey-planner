@@ -1,0 +1,30 @@
+import CardInfoFlight, { ETypeCardInfoFlight } from "./CardInfoFlight";
+
+type ContainerCardInfoFlightProps = {
+  expanded?: boolean
+  tags?: ETypeCardInfoFlight[]
+}
+
+function ContainerCardInfoFlight({
+  expanded = false,
+  tags = [ETypeCardInfoFlight.avaliable]
+}: ContainerCardInfoFlightProps) {
+
+  const cardInfoFlight = (
+    <div className={`rounded-full w-12 h-12 flex items-center justify-center`}>
+      {expanded ? (
+        tags.map((tag, index) => (
+          <div key={index} className="m-1">
+            <CardInfoFlight info={tag} />
+          </div>
+        ))
+      ) : <CardInfoFlight info={tags[0]} />
+      }
+
+    </div>
+  );
+
+  return cardInfoFlight;
+}
+
+export default ContainerCardInfoFlight;
