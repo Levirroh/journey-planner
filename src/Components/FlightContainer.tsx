@@ -1,4 +1,3 @@
-import CardInfoFlight from "./CardInfoFlight";
 import Flight from "./Classes/Flight";
 import ContainerCardInfoFlight from "./ContainerCardInfoFlight";
 
