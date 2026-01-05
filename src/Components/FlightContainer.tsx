@@ -1,4 +1,6 @@
+import CardInfoFlight from "./CardInfoFlight";
 import Flight from "./Classes/Flight";
+import ContainerCardInfoFlight from "./ContainerCardInfoFlight";
 
 type FlightContainerProps = {
   flight?: Flight
@@ -13,17 +15,31 @@ function FlightContainer({
   flight!.remainingSeats = flight?.seats?.filter(seat => seat.user?.user_name !== undefined) || [];
 
   const flightContainer = (
-    <div className="text-black w-90 h-35 p-4 rounded-lg flex flex-col justify-center items-center bg-gradient-to-br from-gray-300 to-gray-400 shadow-lg">
-      <div className="text-center w-[90%] pb-2">
-        <h1 className="text-xl text-left">{flight?.title}</h1>
+    <div className="border-2 border-white h-34 w-4/5 rounded-lg bg-slate-200">
+      <div className="w-full h-2/3">
+        <div className={`bg-[${flight?.image}] w-full h-full bg-cover bg-center rounded-t-lg`}>
+          <div>
+            <ContainerCardInfoFlight tags={flight?.tags} />
+          </div>
+          <div>
+            <h1>{flight?.departure}</h1>
+          </div>
+        </div>
       </div>
-      <div className="bg-slate-200 w-[90%] h-[30%] rounded-lg flex justify-center items-center mb-2">
-        <p>{flight!.image}</p>
-      </div>
-      <div className="text-center w-full h-full">
-        <div className="flex">
-          <p>{flight?.departure} | {flight?.arriving}</p>
-          <p>Remaining seats: {flight!.remainingSeats.length}</p>
+      <div>
+        <div>
+          <h1>{flight?.title}</h1>
+          <h2>{flight?.departure} - {flight?.arriving}</h2>
+        </div>
+        <div className="w-full h-2 bg-gray-300">
+          <h2>
+            {flight?.remainingSeats.length} Seats Left
+            Tarifa light
+            Direct
+          </h2>
+        </div>
+        <div>
+          <img src="" alt="" />Plane Image
         </div>
       </div>
     </div>
