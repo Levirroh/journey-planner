@@ -1,3 +1,4 @@
+import type { ETypeCardInfoFlight } from "../CardInfoFlight"
 import type City from "./City"
 import type Plane from "./Plane"
 import type Seats from "./Seats"
@@ -15,4 +16,5 @@ export default class Flight {
   seats?: Seats[]
   image?: string
   remainingSeats?: Seats[]
+  tags?: ETypeCardInfoFlight[]
 }
