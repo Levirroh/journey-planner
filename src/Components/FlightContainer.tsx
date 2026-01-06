@@ -1,5 +1,9 @@
+import { useState } from "react";
 import Flight from "./Classes/Flight";
 import ContainerCardInfoFlight from "./ContainerCardInfoFlight";
+import { PlaneIcon, TicketPercent } from "lucide-react";
+import { ETypeCardInfoFlight } from "./CardInfoFlight";
+import SectionDivisor from "./Utils/SectionDivisor";
 
 type FlightContainerProps = {
   flight?: Flight
@@ -10,6 +14,11 @@ function FlightContainer({
   flight,
   href = "",
 }: FlightContainerProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  function toggleExpanded() {
+    setExpanded(!expanded);
+  }
 
   flight!.remainingSeats = flight?.seats?.filter(seat => seat.user?.user_name !== undefined) || [];
 
@@ -21,24 +30,40 @@ function FlightContainer({
             <ContainerCardInfoFlight tags={flight?.tags} />
           </div>
           <div>
-            <h1>{flight?.departure}</h1>
+            <h1>{flight?.departureDate}</h1>
           </div>
         </div>
       </div>
       <div>
         <div>
-          <h1>{flight?.title}</h1>
+          <h1>{flight?.departure} <PlaneIcon /> {flight?.arriving}</h1>
           <h2>{flight?.departure} - {flight?.arriving}</h2>
         </div>
         <div className="w-full h-2 bg-gray-300">
-          <h2>
-            {flight?.remainingSeats.length} Seats Left
-            Tarifa light
-            Direct
-          </h2>
-        </div>
-        <div>
-          <img src="" alt="" />Plane Image
+          <div>
+            <h2>
+              {flight?.price}
+            </h2>
+            {flight?.tags?.filter(tag => tag === ETypeCardInfoFlight.discount).length! > 0 && (
+              <TicketPercent />
+            )}
+          </div>
+          <SectionDivisor tags={flight?.tags} fare={flight?.fare} avaliableSeats={flight?.remainingSeats?.length} />
+          {expanded && (
+            <div>
+
+            </div>
+          )}
+          <div>
+            {!expanded && (
+              <div>
+
+              </div>
+            )}
+            <div>
+              <h2>{flight?.type} • {flight?.duration} • <img src={flight?.brandImage} alt={flight?.brand} /></h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>
