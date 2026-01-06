@@ -1,7 +1,10 @@
+
+
 export enum ETypeCardInfoFlight {
   discount,
   avaliable,
   trending,
+  fare,
 }
 
 type CardInfoFlightProps = {
