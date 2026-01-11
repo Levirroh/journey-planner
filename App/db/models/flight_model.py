@@ -4,28 +4,48 @@ from sqlalchemy import Column, Enum
 from enum import Enum as PyEnum
 from typing import Optional
 
-class WeatherEnum(str, PyEnum):
+from App.db.models.country_model import Countries
+from App.db.models.plane_model import Planes
+
+class EWeather(str, PyEnum):
     CHOVENDO = "Raining"
     ENSOLARADO = "Sunny"
     NUBLADO = "Cloudy"
     LIMPO = "Clear"
     TEMPESTADE = "Storm"
+class ETypeFlight(str, PyEnum):
+    DIRECT = "Direct"
 
 
 class Flights(SQLModel, table=True):
     flight_id: Optional[int] = Field(default=None, primary_key=True)
     title: str
+    
     image: Optional[str]
+    tags: Optional[list[str]]
+    type: Optional[ETypeFlight]
+    fare: Optional[str]
+    price: Optional[str] #check
+    
+    brand: str
+    brandImage: Optional[str]
 
-    destiny: int = Field(foreign_key="cities.code")
-    origin: int = Field(foreign_key="cities.code")
+    destinyId: int = Field(foreign_key="cities.code")
+    destiny: Optional["Countries"]
+    originId: int = Field(foreign_key="cities.code")
+    origin: Optional["Countries"]
+    
 
-    departure: datetime
+
+    departureDate: datetime
+    departure: Optional[str]
     arriving: datetime
     duration: time
 
-    weather: WeatherEnum = Field(
-        sa_column=Column(Enum(WeatherEnum, name="weather_enum"))
+    weather: EWeather = Field(
+        sa_column=Column(Enum(EWeather, name="weather_enum"))
     )
+    
 
-    plane: Optional[int] = Field(foreign_key="planes.plane_id")
+    planeId: Optional[int] = Field(foreign_key="planes.plane_id")
+    plane: Optional["Planes"] = None
