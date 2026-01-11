@@ -3,6 +3,8 @@ from sqlalchemy import Column, Enum
 from enum import Enum as PyEnum
 from typing import Optional
 
+from App.db.models.plane_model import Planes
+
 class ClassTypes(str, PyEnum):
     ECONOMY = "Economy"
     P_ECONOMY = "Premium Economy"
