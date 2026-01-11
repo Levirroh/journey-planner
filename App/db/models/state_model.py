@@ -1,6 +1,9 @@
 from sqlmodel import Relationship, SQLModel, Field
 from typing import List, Optional
 
+from App.db.models.city_model import Cities
+from App.db.models.country_model import Countries
+
 class States(SQLModel, table=True):
     code: str = Field(primary_key=True)
     name: str
