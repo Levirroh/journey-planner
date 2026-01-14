@@ -26,7 +26,6 @@ function Home() {
 
   useState(() => {
     GetPlaces();
-    console.log("teste");
   });
 
 
