@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Flight from "./Classes/Flight";
 import ContainerCardInfoFlight from "./ContainerCardInfoFlight";
-import { PlaneIcon, TicketPercent } from "lucide-react";
+import { Armchair, LuggageIcon, PlaneIcon, TicketPercent } from "lucide-react";
 import { ETypeCardInfoFlight } from "./CardInfoFlight";
 import SectionDivisor from "./Utils/SectionDivisor";
+import Button from "./Button";
 
 type FlightContainerProps = {
   flight?: Flight
@@ -45,13 +46,17 @@ function FlightContainer({
               {flight?.price}
             </h2>
             {flight?.tags?.filter(tag => tag === ETypeCardInfoFlight.discount).length! > 0 && (
-              <TicketPercent />
+              <div>
+                <h2>(-{flight?.discountPercent}%)</h2>
+                <TicketPercent />
+              </div>
             )}
           </div>
           <SectionDivisor tags={flight?.tags} fare={flight?.fare} avaliableSeats={flight?.remainingSeats?.length} />
           {expanded && (
             <div>
-
+              <Button text="Add to Cart" icon={<LuggageIcon color="white" />} color="bg-orange-400" textColor="text-white" />
+              <Button text="See more!" icon={<Armchair color="white" />} color="bg-blue-400" textColor="text-white" />
             </div>
           )}
           <div>
