@@ -30,6 +30,7 @@ export default class Flight {
   tags?: ETypeCardInfoFlight[]
   type?: ETypeFlight
   fare?: ETypeFare
+  discountPercent?: number
   price?: number
   brand?: string
   brandImage?: string
