@@ -46,9 +46,9 @@ function FlightContainer({
               {flight?.price}
             </h2>
             {flight?.tags?.filter(tag => tag === ETypeCardInfoFlight.discount).length! > 0 && (
-              <div>
-                <h2>(-{flight?.discountPercent}%)</h2>
-                <TicketPercent />
+              <div className="bg-green-400">
+                <h2 className="text-green-700">(-{flight?.discountPercent}%)</h2>
+                <TicketPercent color="green" />
               </div>
             )}
           </div>
