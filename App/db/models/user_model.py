@@ -1,19 +1,19 @@
-from datetime import date
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
+from datetime import date
 from enum import Enum as PyEnum
 
-from App.db.models.city_model import Cities
-from App.db.models.country_model import Countries
-from App.db.models.state_model import States
 
-class ETravelType(str, PyEnum): # todo: make a table for travel types
+class ETravelType(str, PyEnum):
     LEISURE = "Leisure"
     BUSINESS = "Business"
     ADVENTURE = "Adventure"
     CULTURE = "Culture"
     GASTRONOMY = "Gastronomy"
+
+
 class Users(SQLModel, table=True):
+
     user_id: Optional[int] = Field(default=None, primary_key=True)
 
     user_name: str
@@ -23,11 +23,13 @@ class Users(SQLModel, table=True):
     user_birth: date   
 
     user_countryId: str = Field(foreign_key="countries.code")
-    user_country: Optional["Countries"] 
+    user_country: Optional["Countries"] = Relationship()
+
     user_stateId: str = Field(foreign_key="states.code")
-    user_state: Optional["States"] 
+    user_state: Optional["States"] = Relationship()
+
     user_cityId: int = Field(foreign_key="cities.code")
-    user_city: Optional["Cities"] 
+    user_city: Optional["Cities"] = Relationship()
 
     user_password: str
 
@@ -35,4 +37,4 @@ class Users(SQLModel, table=True):
     wish_country_two: Optional[str] = Field(default=None, foreign_key="countries.code")
     wish_country_three: Optional[str] = Field(default=None, foreign_key="countries.code")
 
-    travel_type: ETravelType
+    travel_type: Optional[ETravelType] = Field(default=None)
