@@ -1,8 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 
-from App.db.models.state_model import States
-
 class Cities(SQLModel, table=True):
     code: Optional[int] = Field(primary_key=True)
     name: str

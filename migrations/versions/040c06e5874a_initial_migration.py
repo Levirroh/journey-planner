@@ -1,19 +1,18 @@
 """initial migration
 
-Revision ID: 2ebe568cb944
+Revision ID: 040c06e5874a
 Revises: 
-Create Date: 2025-12-14 11:16:35.292567
+Create Date: 2026-01-21 21:55:59.861460
 
 """
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision: str = '2ebe568cb944'
+revision: str = '040c06e5874a'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -33,6 +32,14 @@ def upgrade() -> None:
     sa.Column('total_seats', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('plane_id')
     )
+    op.create_table('seats',
+    sa.Column('seat_id', sa.Integer(), nullable=False),
+    sa.Column('code', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('location', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('plane_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['plane_id'], ['planes.plane_id'], ),
+    sa.PrimaryKeyConstraint('seat_id')
+    )
     op.create_table('states',
     sa.Column('code', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('name', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
@@ -50,7 +57,9 @@ def upgrade() -> None:
     op.create_table('aeroports',
     sa.Column('aeroport_id', sa.Integer(), nullable=False),
     sa.Column('name', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.Column('adress', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('address', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('iata_code', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('icao_code', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('state', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('city', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['city'], ['cities.code'], ),
@@ -61,16 +70,23 @@ def upgrade() -> None:
     sa.Column('flight_id', sa.Integer(), nullable=False),
     sa.Column('title', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('image', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
-    sa.Column('destiny', sa.Integer(), nullable=False),
-    sa.Column('origin', sa.Integer(), nullable=False),
-    sa.Column('departure', sa.DateTime(), nullable=False),
+    sa.Column('tags', sa.JSON(), nullable=True),
+    sa.Column('type', sa.Enum('DIRECT', name='etypeflight'), nullable=True),
+    sa.Column('fare', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('price', sa.Numeric(precision=10, scale=2), nullable=True),
+    sa.Column('brand', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('brandImage', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('destinyId', sa.Integer(), nullable=False),
+    sa.Column('originId', sa.Integer(), nullable=False),
+    sa.Column('departureDate', sa.DateTime(), nullable=False),
+    sa.Column('departure', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('arriving', sa.DateTime(), nullable=False),
-    sa.Column('duration', sa.Time(), nullable=False),
+    sa.Column('duration_min', sa.Integer(), nullable=False),
     sa.Column('weather', sa.Enum('CHOVENDO', 'ENSOLARADO', 'NUBLADO', 'LIMPO', 'TEMPESTADE', name='weather_enum'), nullable=True),
-    sa.Column('plane', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['destiny'], ['cities.code'], ),
-    sa.ForeignKeyConstraint(['origin'], ['cities.code'], ),
-    sa.ForeignKeyConstraint(['plane'], ['planes.plane_id'], ),
+    sa.Column('planeId', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['destinyId'], ['cities.code'], ),
+    sa.ForeignKeyConstraint(['originId'], ['cities.code'], ),
+    sa.ForeignKeyConstraint(['planeId'], ['planes.plane_id'], ),
     sa.PrimaryKeyConstraint('flight_id')
     )
     op.create_table('users',
@@ -80,33 +96,21 @@ def upgrade() -> None:
     sa.Column('user_nickname', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('user_phone', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('user_birth', sa.Date(), nullable=False),
-    sa.Column('user_country', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.Column('user_state', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.Column('user_city', sa.Integer(), nullable=False),
+    sa.Column('user_countryId', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('user_stateId', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('user_cityId', sa.Integer(), nullable=False),
     sa.Column('user_password', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('wish_country_one', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('wish_country_two', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('wish_country_three', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
-    sa.Column('travel_type', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.ForeignKeyConstraint(['user_city'], ['cities.code'], ),
-    sa.ForeignKeyConstraint(['user_country'], ['countries.code'], ),
-    sa.ForeignKeyConstraint(['user_state'], ['states.code'], ),
+    sa.Column('travel_type', sa.Enum('LEISURE', 'BUSINESS', 'ADVENTURE', 'CULTURE', 'GASTRONOMY', name='etraveltype'), nullable=True),
+    sa.ForeignKeyConstraint(['user_cityId'], ['cities.code'], ),
+    sa.ForeignKeyConstraint(['user_countryId'], ['countries.code'], ),
+    sa.ForeignKeyConstraint(['user_stateId'], ['states.code'], ),
     sa.ForeignKeyConstraint(['wish_country_one'], ['countries.code'], ),
     sa.ForeignKeyConstraint(['wish_country_three'], ['countries.code'], ),
     sa.ForeignKeyConstraint(['wish_country_two'], ['countries.code'], ),
     sa.PrimaryKeyConstraint('user_id')
-    )
-    op.create_table('seats',
-    sa.Column('seat_id', sa.Integer(), nullable=False),
-    sa.Column('code', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.Column('weather', sa.Enum('ECONOMY', 'P_ECONOMY', 'BUSINESS', 'FIRST_CLASS', name='class_types_enum'), nullable=True),
-    sa.Column('location', sa.Enum('WINDOWS', 'CORRIDOR', 'MIDDLE', 'EMERGENCY', 'WING', 'FRONT', name='seat_place_enum'), nullable=True),
-    sa.Column('location_especify', sa.Enum('WINDOWS', 'CORRIDOR', 'MIDDLE', 'EMERGENCY', 'WING', 'FRONT', name='seat_place_especify_enum'), nullable=True),
-    sa.Column('plane_id', sa.Integer(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['plane_id'], ['planes.plane_id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.user_id'], ),
-    sa.PrimaryKeyConstraint('seat_id')
     )
     # ### end Alembic commands ###
 
@@ -114,12 +118,12 @@ def upgrade() -> None:
 def downgrade() -> None:
     """Downgrade schema."""
     # ### commands auto generated by Alembic - please adjust! ###
-    op.drop_table('seats')
     op.drop_table('users')
     op.drop_table('flights')
     op.drop_table('aeroports')
     op.drop_table('cities')
     op.drop_table('states')
+    op.drop_table('seats')
     op.drop_table('planes')
     op.drop_table('countries')
     # ### end Alembic commands ###
