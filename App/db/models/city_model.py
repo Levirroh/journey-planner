@@ -8,3 +8,5 @@ class Cities(SQLModel, table=True):
     state_code: str = Field(foreign_key="states.code")
 
     state: Optional["States"] = Relationship(back_populates="cities")
+    
+    users: list["Users"] = Relationship(back_populates="user_city")

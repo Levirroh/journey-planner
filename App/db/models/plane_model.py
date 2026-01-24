@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 from sqlmodel import SQLModel, Field, Relationship
 
 
@@ -7,4 +7,4 @@ class Planes(SQLModel, table=True):
     model: str
     total_seats: int
 
-    flights: List["Flights"] = Relationship(back_populates="plane")
+    flights: list["Flights"] = Relationship(back_populates="plane")

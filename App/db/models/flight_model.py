@@ -1,13 +1,10 @@
 from datetime import datetime
 from decimal import Decimal
 from enum import Enum as PyEnum
-from typing import Optional, List
+from typing import Optional
 
 from sqlalchemy import Column, Enum, JSON, Numeric
 from sqlmodel import SQLModel, Field, Relationship
-
-from App.db.models.city_model import Cities
-from App.db.models.plane_model import Planes
 
 
 class EWeather(str, PyEnum):
@@ -30,7 +27,7 @@ class Flights(SQLModel, table=True):
 
     image: Optional[str]
 
-    tags: Optional[List[str]] = Field(sa_column=Column(JSON))
+    tags: Optional[list[str]] = Field(sa_column=Column(JSON))
 
     type: Optional[ETypeFlight]
     fare: Optional[str]
@@ -41,10 +38,18 @@ class Flights(SQLModel, table=True):
     brandImage: Optional[str]
 
     destinyId: int = Field(foreign_key="cities.code")
-    destiny: Optional["Cities"] = Relationship()
+    destiny: Optional["Cities"] = Relationship(
+        sa_relationship_kwargs={
+            "foreign_keys": "[Flights.destinyId]"
+        }
+    )
 
     originId: int = Field(foreign_key="cities.code")
-    origin: Optional["Cities"] = Relationship()
+    origin: Optional["Cities"] = Relationship(
+        sa_relationship_kwargs={
+            "foreign_keys": "[Flights.originId]"
+        }
+    )
 
     departureDate: datetime
     departure: Optional[str]
