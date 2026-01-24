@@ -1,6 +1,16 @@
 from sqlmodel import SQLModel
-from App.db.models import Countries, States, Cities, Users
-
+from sqlmodel import SQLModel
+from App.db.models import (
+    Countries,
+    States,
+    Cities,
+    Users,
+    Flights,
+    Planes,
+    Tags,
+    Aeroports,
+    Seats,
+)
 #aplying the models' metadata for migrations
 target_metadata = SQLModel.metadata
 

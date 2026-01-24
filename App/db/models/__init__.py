@@ -6,6 +6,7 @@ from .aeroport_model import Aeroports
 from .flight_model import Flights
 from .plane_model import Planes
 from .seat_model import Seats
+from .tags_model import Tags
 
 Users.model_rebuild()
 Countries.model_rebuild()
@@ -15,3 +16,4 @@ Aeroports.model_rebuild()
 Flights.model_rebuild()
 Planes.model_rebuild()
 Seats.model_rebuild()
+Tags.model_rebuild()
