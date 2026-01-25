@@ -1,11 +1,13 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
-import bcrypt
+from sqlalchemy.orm import aliased
+from sqlalchemy import or_
 
 from sqlmodel import select
 
 from App.db.database import get_session
 from App.db.models import Flights
+from App.db.models.city_model import Cities
 
 router = APIRouter(
     prefix="/flights",
@@ -35,11 +37,23 @@ async def see_flight(request: seeFlight, session = Depends(get_session)):
 
 @router.post("/getFeed")
 async def all_flights(request: seeFeed, session = Depends(get_session)):
-    result = session.exec(select(Flights).joinedload(Flights.plane).joinedload(Flights.seats).where(
-        (Flights.destiny == request.destiny) & (Flights.departure == request.departure)
-    ))
-    flights = result.all()
-    return flights
+    DestinyCity = aliased(Cities)
+    OriginCity = aliased(Cities)
+
+    statement = (
+        select(Flights)
+        .join(Flights.plane)
+        .join(DestinyCity, Flights.destinyId == DestinyCity.code)
+        .join(OriginCity, Flights.originId == OriginCity.code)
+        .where(
+            or_(
+                DestinyCity.name.ilike(f"%{request.destiny}%"),
+                OriginCity.name.ilike(f"%{request.departure}%")
+            )
+        )
+    )
+
+    return session.exec(statement).all()
 
 
 @router.post("/newFlight")
