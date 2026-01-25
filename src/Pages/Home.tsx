@@ -12,21 +12,21 @@ function Home() {
 
   const showDepartureInput = destiny.trim() !== "";
 
-  async function GetPlaces() {
-    try {
-      const response = await axios.get("http://localhost:8000/geo/seeAllGeo", {
-      });
-      console.log(response.data);
-      setPlaces(response.data);
-    } catch (error) {
-      setError(true);
-      setTimeout(() => setError(false), 3000);
-    }
-  }
+  // async function GetPlaces() {
+  //   try {
+  //     const response = await axios.get("http://localhost:8000/geo/seeAllGeo", {
+  //     });
+  //     console.log(response.data);
+  //     setPlaces(response.data);
+  //   } catch (error) {
+  //     setError(true);
+  //     setTimeout(() => setError(false), 3000);
+  //   }
+  // }
 
-  useState(() => {
-    GetPlaces();
-  });
+  // useState(() => {
+  //   GetPlaces();
+  // });
 
 
 
@@ -53,9 +53,11 @@ function Home() {
           />
         )}
       </div>
-      {places != null && (
-        <Feed destiny={destiny} departure={departure} />
-      )}
+      <div className="w-full flex items-center justify-center">
+        {places != null && (
+          <Feed destiny={destiny} departure={departure} />
+        )}
+      </div>
       <CompactNavbar />
     </section>
   );

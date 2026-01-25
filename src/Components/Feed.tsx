@@ -27,6 +27,7 @@ function Feed({ destiny, departure }: FeedProps) {
 
             const feed = await response.json();
             setFeed(feed);
+            console.log(feed);
         } catch (err) {
             console.error("Erro:", err);
         }
@@ -34,9 +35,7 @@ function Feed({ destiny, departure }: FeedProps) {
     return (
         <div className="h-full w-screen bg-transparent flex flex-col items-center">
             {feed.map((flight: any) => (
-                <div className="p-3">
-                    <FlightContainer flight={flight} />
-                </div>
+                <FlightContainer flight={flight} />
             ))}
         </div>
     )
