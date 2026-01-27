@@ -27,7 +27,6 @@ function Feed({ destiny, departure }: FeedProps) {
 
             const feed = await response.json();
             setFeed(feed);
-            console.log(feed);
         } catch (err) {
             console.error("Erro:", err);
         }

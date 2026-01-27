@@ -1,5 +1,3 @@
-
-
 export enum ETypeCardInfoFlight {
   discount,
   avaliable,
