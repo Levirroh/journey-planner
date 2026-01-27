@@ -26,8 +26,13 @@ class seeGeo(BaseModel):
 
 @router.get("/seeAllGeo")
 async def see_geo(session = Depends(get_session)):
-    query = select(Countries).join(States, States.country_code == Countries.code).join(Cities, Cities.state_code == States.code)
-    return query
+    query = (
+        select(Countries)
+        .join(States.country_code == Countries.code)
+        .join(Cities.state_code == States.code)
+    )
+
+    return session.exec(query).all()
 
 
 @router.post("/seeGeo")
@@ -36,6 +41,12 @@ async def see_geo(request: seeGeo, session = Depends(get_session)):
         (Countries.code == request.code)
     )
     return query
+
+@router.post("/getPlaces")
+async def see_geo(request: seeGeo, session = Depends(get_session)):
+    query = select(Cities)
+
+    return session.exec(query).all()
 #endregion
 
 #region Country
