@@ -12,21 +12,21 @@ function Home() {
 
   const showDepartureInput = destiny.trim() !== "";
 
-  // async function GetPlaces() {
-  //   try {
-  //     const response = await axios.get("http://localhost:8000/geo/seeAllGeo", {
-  //     });
-  //     console.log(response.data);
-  //     setPlaces(response.data);
-  //   } catch (error) {
-  //     setError(true);
-  //     setTimeout(() => setError(false), 3000);
-  //   }
-  // }
+  async function GetPlaces() {
+    try {
+      const response = await axios.get("http://localhost:8000/geo/getPlaces", {
+      });
+      console.log(response.data);
+      setPlaces(response.data);
+    } catch (error) {
+      setError(true);
+      setTimeout(() => setError(false), 3000);
+    }
+  }
 
-  // useState(() => {
-  //   GetPlaces();
-  // });
+  useState(() => {
+    GetPlaces();
+  });
 
 
 
@@ -34,7 +34,7 @@ function Home() {
     <section className="w-screen h-screen bg-gradient-to-br from-blue-600 to-blue-400 relative">
       <div className="w-full flex flex-col items-center justify-center gap-4 pt-6">
         <Input
-          type={ETypeInput.input}
+          type={ETypeInput.select}
           options={places}
           width="w-72"
           height="h-12"
@@ -44,7 +44,7 @@ function Home() {
 
         {showDepartureInput && (
           <Input
-            type={ETypeInput.input}
+            type={ETypeInput.select}
             options={places}
             width="w-72"
             height="h-12"
