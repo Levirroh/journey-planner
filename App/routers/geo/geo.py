@@ -43,9 +43,8 @@ async def see_geo(request: seeGeo, session = Depends(get_session)):
     return query
 
 @router.post("/getPlaces")
-async def see_geo(request: seeGeo, session = Depends(get_session)):
-    query = select(Cities)
-
+def see_geo(request: seeGeo, session = Depends(get_session)):
+    query = select(Cities).where(Cities.state == request.state_code)
     return session.exec(query).all()
 #endregion
 
