@@ -26,23 +26,19 @@ function FlightContainer({
 
   const flightContainer = (
     <div className="w-4/5 max-w-md rounded-[32px] bg-white shadow-lg overflow-hidden">
-
       <div className="relative h-44 bg-cover bg-center"
         style={{ backgroundImage: "url(src/Components/Images/berlim.jpg)" }}
       >
         <div className="absolute top-4 left-4">
           <ContainerCardInfoFlight tags={flight?.tags} />
         </div>
-
         <div className="absolute bottom-3 left-4 text-white">
           <p className="text-sm font-semibold">
             {flight?.departureDate}
           </p>
         </div>
       </div>
-
       <div className="p-4 space-y-3">
-
         <div>
           <h1 className="text-lg font-semibold flex items-center gap-2">
             {flight?.departure}
@@ -58,7 +54,6 @@ function FlightContainer({
             <h2 className="text-xl font-bold">
               R$ {flight?.price}
             </h2>
-
             {flight?.tags?.includes(ETypeCardInfoFlight.discount) && (
               <div className="flex items-center gap-1 text-green-600 text-sm font-semibold">
                 <TicketPercent size={16} />
@@ -67,7 +62,6 @@ function FlightContainer({
             )}
           </div>
         </div>
-
         <SectionDivisor
           tags={flight?.tags}
           fare={flight?.fare}
@@ -77,7 +71,6 @@ function FlightContainer({
           <span>
             {flight?.type} • {flight?.duration}
           </span>
-
           <img
             src={flight?.brandImage}
             alt={flight?.brand}
@@ -100,7 +93,6 @@ function FlightContainer({
             />
           </div>
         )}
-
       </div>
     </div>
   );

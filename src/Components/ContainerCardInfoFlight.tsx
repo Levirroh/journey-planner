@@ -13,6 +13,7 @@ function ContainerCardInfoFlight({
   if (tags === null || tags.length === 0) {
     return null
   }
+
   const cardInfoFlight = (
     <div className={`rounded-full w-12 h-12 flex items-center justify-center`}>
       {expanded ? (
