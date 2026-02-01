@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import aliased
 from sqlalchemy import or_
 
-from sqlmodel import select
+from sqlmodel import and_, select
 
 from App.db.database import get_session
 from App.db.models import Flights
@@ -36,24 +36,42 @@ async def see_flight(request: seeFlight, session = Depends(get_session)):
     return query
 
 @router.post("/getFeed")
-async def all_flights(request: seeFeed, session = Depends(get_session)):
+async def all_flights(request: seeFeed, session=Depends(get_session)):
     DestinyCity = aliased(Cities)
     OriginCity = aliased(Cities)
 
+    filters = []
+
+    if request.destiny and request.destiny.strip():
+        filters.append(DestinyCity.name.ilike(f"%{request.destiny}%"))
+
+    if request.departure and request.departure.strip():
+        filters.append(OriginCity.name.ilike(f"%{request.departure}%"))
+
     statement = (
-        select(Flights)
-        .join(Flights.plane)
-        .join(DestinyCity, Flights.destinyId == DestinyCity.code)
-        .join(OriginCity, Flights.originId == OriginCity.code)
-        .where(
-            or_(
-                DestinyCity.name.ilike(f"%{request.destiny}%"),
-                OriginCity.name.ilike(f"%{request.departure}%")
-            )
+        select(
+            Flights,
+            OriginCity,
+            DestinyCity
         )
+        .join(Flights.plane)
+        .join(OriginCity, Flights.originId == OriginCity.code)
+        .join(DestinyCity, Flights.destinyId == DestinyCity.code)
     )
 
-    return session.exec(statement).all()
+    if filters:
+        statement = statement.where(and_(*filters))
+
+    results = session.exec(statement).all()
+
+    return [
+        {
+            "flight": flight,
+            "origin": origin,
+            "destiny": destiny
+        }
+        for flight, origin, destiny in results
+    ]
 
 
 @router.post("/newFlight")
