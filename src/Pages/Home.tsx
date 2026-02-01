@@ -12,21 +12,21 @@ function Home() {
 
   const showDepartureInput = destiny.trim() !== "";
 
-  async function GetPlaces() {
-    try {
-      const response = await axios.get("http://localhost:8000/geo/getPlaces", {
-      });
-      console.log(response.data);
-      setPlaces(response.data);
-    } catch (error) {
-      setError(true);
-      setTimeout(() => setError(false), 3000);
-    }
-  }
+  // async function GetPlaces() {
+  //   try {
+  //     const response = await axios.get("http://localhost:8000/geo/getPlaces", {
+  //     });
+  //     console.log(response.data);
+  //     setPlaces(response.data);
+  //   } catch (error) {
+  //     setError(true);
+  //     setTimeout(() => setError(false), 3000);
+  //   }
+  // }
 
-  useState(() => {
-    GetPlaces();
-  });
+  // useState(() => {
+  //   GetPlaces();
+  // });
 
 
 

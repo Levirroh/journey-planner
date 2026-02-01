@@ -10,7 +10,7 @@ type SectionDivisorProps = {
 function SectionDivisor({ tags, fare, avaliableSeats }: SectionDivisorProps) {
 
   return (
-    <div className="self-center bg-slate-300 p-2 w-full">
+    <div className="self-center bg-slate-300 p-[1px] w-full">
     </div>
   )
 }

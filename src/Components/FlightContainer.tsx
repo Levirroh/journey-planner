@@ -17,6 +17,7 @@ function FlightContainer({
   href = "",
 }: FlightContainerProps) {
   const [expanded, setExpanded] = useState(false);
+  console.log(flight);
 
   function toggleExpanded() {
     setExpanded(!expanded);
@@ -25,8 +26,8 @@ function FlightContainer({
   flight!.remainingSeats = flight?.seats?.filter(seat => seat.user?.user_name !== undefined) || [];
 
   const flightContainer = (
-    <div className="w-4/5 max-w-md rounded-[32px] bg-white shadow-lg overflow-hidden">
-      <div className="relative h-44 bg-cover bg-center"
+    <div className="w-4/5 max-w-md rounded-[32px] bg-white p-[4px] shadow-lg overflow-hidden">
+      <div className="relative h-44 bg-cover bg-center rounded-t-[28px]"
         style={{ backgroundImage: "url(src/Components/Images/berlim.jpg)" }}
       >
         <div className="absolute top-4 left-4">
