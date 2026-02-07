@@ -15,7 +15,7 @@ function ContainerCardInfoFlight({
   }
 
   const cardInfoFlight = (
-    <div className={`rounded-full w-12 h-12 flex items-center justify-center`}>
+    <div className={`rounded-4xl w-12 h-12 flex items-center justify-center`}>
       {expanded ? (
         tags.map((tag, index) => (
           <div key={index} className="m-1">

@@ -17,7 +17,7 @@ function CardInfoFlight({
     <div className={`${info == ETypeCardInfoFlight.avaliable ? "bg-green-600" :
       info == ETypeCardInfoFlight.discount ? "bg-blue-600" :
         info == ETypeCardInfoFlight.trending ? "bg-yellow-600" : "bg-gray-400"}
-    rounded-full w-12 h-12 flex items-center justify-center`}>
+    rounded-4xl w-12 h-12 flex items-center justify-center`}>
       <p className="text-white font-bold text-sm">
         {info == ETypeCardInfoFlight.avaliable ? "Avaliable" :
           info == ETypeCardInfoFlight.discount ? "Discount" :

@@ -32,7 +32,7 @@ function Feed({ destiny, departure }: FeedProps) {
         }
     }
     return (
-        <div className="h-full w-screen bg-transparent flex flex-col items-center">
+        <div className="h-full w-screen bg-transparent flex flex-col items-center p-10">
             {feed.map((flight: any) => (
                 <FlightContainer flight={flight} />
             ))}
