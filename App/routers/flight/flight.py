@@ -30,7 +30,7 @@ class newFlight(BaseModel):
 #region Requests
 @router.post("/seeFlight")
 async def see_flight(request: seeFlight, session = Depends(get_session)):
-    query = select(Flights).where(
+    query = select(Flights).join(Flights.origin).join(Flights.destiny).where(
         (Flights.flight_id == request.flight_id)
     )
     return query
@@ -46,7 +46,7 @@ async def all_flights(request: seeFeed, session=Depends(get_session)):
         filters.append(DestinyCity.name.ilike(f"%{request.destiny}%"))
 
     if request.departure and request.departure.strip():
-        filters.append(OriginCity.name.ilike(f"%{request.departure}%"))
+        filters.append(DestinyCity.name.ilike(f"%{request.destiny}%") and OriginCity.name.ilike(f"%{request.departure}%"))
 
     statement = (
         select(
