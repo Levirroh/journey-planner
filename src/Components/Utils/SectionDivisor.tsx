@@ -7,10 +7,16 @@ type SectionDivisorProps = {
   avaliableSeats?: number,
 }
 
-function SectionDivisor({ tags, fare, avaliableSeats }: SectionDivisorProps) {
+function SectionDivisor({ tags = [], fare, avaliableSeats }: SectionDivisorProps) {
 
   return (
     <div className="self-center bg-slate-300 p-[1px] w-full">
+      {tags.map((tag: any) => (
+        <div>
+        </div>
+      ))}
+      {fare}
+      {avaliableSeats}
     </div>
   )
 }
